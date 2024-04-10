@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapStoneBEAgenziaImmobiliare.Server", "CapStoneBEAgenziaImmobiliare.Server\CapStoneBEAgenziaImmobiliare.Server.csproj", "{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "capstonebeagenziaimmobiliare.client", "capstonebeagenziaimmobiliare.client\capstonebeagenziaimmobiliare.client.esproj", "{59DE6F00-DFFE-4682-96D8-4748CAC35F06}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59DE6F00-DFFE-4682-96D8-4748CAC35F06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59DE6F00-DFFE-4682-96D8-4748CAC35F06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59DE6F00-DFFE-4682-96D8-4748CAC35F06}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{59DE6F00-DFFE-4682-96D8-4748CAC35F06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59DE6F00-DFFE-4682-96D8-4748CAC35F06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59DE6F00-DFFE-4682-96D8-4748CAC35F06}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4BDCAA0D-BA69-443F-A084-53F8C2082AB0}
+	EndGlobalSection
+EndGlobal

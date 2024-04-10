@@ -1,0 +1,263 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+$primary-color: #034489;
+$background-color: #a5d9fd;
+$background-color-hover: #007fff;
+$font-color-white: white;
+$padding-y-custom: 1rem;
+$padding-x-custom: 1rem;
+
+body {
+  font-family: "Nunito", sans-serif;
+  font-size: 18px;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+// NNN    NNN  AAAAA   VV     VV  BBBBB    AAAAA   RRRRR
+// NNNN   NNN AA   AA  VV     VV  BB   B  AA   AA  RR  RR
+// NNNN   NNN AAAAAAA  VV     VV  BBBBBB  AAAAAAA  RRRRR
+// NNN N  NNN AA   AA   VV   VV   BB   BB AA   AA  RR  RR
+// NNN  N NNN AA   AA    VVVVV    BBBBBB  AA   AA  RR   RR
+
+.divNav {
+  background-color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid $primary-color;
+}
+.customNavbar {
+  max-width: 1600px;
+  padding-inline: 30px;
+}
+
+.nav-link-custom {
+  font-size: 1.25rem;
+  margin-right: 20px;
+  color: $primary-color;
+}
+.navdropdown-item-custom {
+  font-size: 1.25rem;
+}
+
+// HHH   HHH  OOOOOOO  MM   MM  EEEEEEE  PPPP    AA    GGGGG  EEEEEEE
+// HHH   HHH OO     OO MMM MMM  EE       PP  PP AAAAA  GG     EE
+// HHHHHHHHH OO     OO MM M MM  EEEEE    PPPP  AA   AA GG GGG EEEEE
+// HHH   HHH OO     OO MM   MM  EE       PP    AAAAAAA GG  GG EE
+// HHH   HHH  OOOOOOO  MM   MM  EEEEEEE  PP    AA   AA  GGGGG EEEEEEE
+
+//SEARCHBAR
+
+.trovaLaTuaCasa {
+  background-color: rgba(41, 49, 51, 0.8);
+  border-radius: 25px;
+  margin-block: 20vh;
+  padding: 5vh;
+  transition: opacity 1s ease;
+
+  .titoloSearch {
+    color: $font-color-white;
+    font-size: 55px;
+    font-weight: 700;
+  }
+
+  .sottotitoloSearch {
+    font-size: 18px;
+  }
+
+  &:hover {
+    opacity: 0;
+  }
+}
+
+.bottoneSearchbarVenAff {
+  border: none;
+  background-color: $background-color;
+  padding: 10px 20px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 5px;
+  margin: 0 5px;
+
+  &:hover {
+    background-color: $background-color-hover;
+  }
+
+  &.active {
+    background-color: $primary-color;
+    color: $font-color-white;
+
+    &::after {
+      content: "";
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid $primary-color;
+      position: absolute;
+      bottom: -10px;
+      left: calc(50% - 10px);
+    }
+  }
+}
+
+.areaRicerca {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 50px;
+  position: relative;
+  z-index: 10;
+  margin-bottom: 5vh;
+  margin-top: 20px;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    left: -10px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    z-index: -1;
+  }
+}
+
+.customFormControl {
+  padding: $padding-y-custom $padding-x-custom;
+  font-size: 1rem;
+  height: auto;
+  min-height: 50px;
+}
+
+.searchCustomButton {
+  background-color: $primary-color;
+  color: $font-color-white;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 5px;
+  height: auto;
+  min-height: 50px;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $background-color-hover;
+  }
+}
+
+.custom-dropdown .btn {
+  height: 50px;
+  width: 100%;
+  min-width: 250px;
+  padding: 1.7rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-dropdown .dropdown-menu {
+  width: 100%;
+  .dropdown-item {
+    padding: 0.75rem 1rem;
+  }
+}
+
+// CAROSELLO
+
+.homeCarouselButton {
+  background-color: $primary-color;
+  color: $font-color-white;
+  &:hover {
+    background-color: $background-color-hover;
+  }
+}
+
+.homeCarouselButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.homeCarouselButton .material-symbols-outlined {
+  margin-left: 8px;
+  padding: 0;
+}
+
+// HOME CAROUSEL CARDS
+
+.home-carousel-card {
+  margin: 0 20px;
+  padding: 8px;
+}
+
+// TEAM CAROUSEL CARDS
+
+.team-carousel-card {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+  margin-bottom: 30px;
+  height: auto;
+  padding: 8px;
+}
+
+.team-carousel-card .card-img-top {
+  width: 100%;
+  object-fit: cover;
+}
+
+// FOOTER
+.footer-bg {
+  background-color: #2e3c55;
+  color: $font-color-white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.underFooter-text {
+  text-align: center;
+}
+.underFooter {
+  background-color: #2a364b;
+  color: $font-color-white;
+  padding-top: 20px;
+}
+footer {
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  ul li {
+    padding-bottom: 5px;
+  }
+}
+
+// CCCCC  EEEEE  RRRRR   CCCC   A    CCCCC   A    SSSSS   A   PPPPP    A   GGGGG EEEEE
+// C      E      R    R C      A A   C      A A   S      A A  P    P  A A  G     E
+// C      EEEE   RRRRR  C     AAAAA  C     AAAAA   SSS  AAAAA PPPPPP AAAAA G  GG EEEE
+// C      E      R  R   C     A   A  C     A   A      S A   A P      A   A G   G E
+// CCCCC  EEEEE  R   R   CCCC A   A  CCCCC A   A SSSSS  A   A P      A   A  GGGG EEEEE
+
+.bottoneCercaCasaVenAff {
+  border: none;
+  background-color: $background-color;
+  padding: 10px 20px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 5px;
+  margin: 0 5px;
+
+  &:hover {
+    background-color: $background-color-hover;
+  }
+
+  &.active {
+    background-color: $primary-color;
+    color: $font-color-white;
+  }
+}

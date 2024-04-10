@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\CapStoneBEAgenziaImmobiliare.Server.props" />
+</Project>

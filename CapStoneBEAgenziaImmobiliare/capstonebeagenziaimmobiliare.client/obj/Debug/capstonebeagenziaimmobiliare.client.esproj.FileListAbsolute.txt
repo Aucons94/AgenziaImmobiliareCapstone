@@ -1,0 +1,1 @@
+C:\Users\Alessandro\Desktop\Capstone\Back-end\CapStoneBEAgenziaImmobiliare\capstonebeagenziaimmobiliare.client\obj\Debug\capstonebeagenziaimmobiliare.client.esproj.CoreCompileInputs.cache

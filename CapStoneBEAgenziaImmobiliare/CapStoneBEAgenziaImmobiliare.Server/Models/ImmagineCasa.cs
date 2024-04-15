@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CapStoneBEAgenziaImmobiliare.Server.Models;
 
-public partial class ImmaginiCase
+public partial class ImmagineCasa
 {
+    [Key]
     public int IdImmagine { get; set; }
 
+    [ForeignKey("Immobile")]
     public int FkIdImmobile { get; set; }
 
     public string Immagine { get; set; } = null!;
@@ -15,5 +19,5 @@ public partial class ImmaginiCase
 
     public bool ImmagineCopertina { get; set; }
 
-    public virtual Immobili FkIdImmobileNavigation { get; set; } = null!;
+    public virtual Immobile Immobile { get; set; } = null!;
 }

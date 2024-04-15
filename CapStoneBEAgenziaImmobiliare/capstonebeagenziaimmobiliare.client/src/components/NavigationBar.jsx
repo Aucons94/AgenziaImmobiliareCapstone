@@ -19,7 +19,7 @@ const NavigationBar = ({ isAdmin, isLoggedIn, handleLogout }) => {
               <Nav.Link href="/CercaCasa" className="nav-link-custom">
                 Cerca Casa
               </Nav.Link>
-              <Nav.Link href="#vendi-casa" className="nav-link-custom">
+              <Nav.Link href="/VendiCasa" className="nav-link-custom">
                 Vendi Casa
               </Nav.Link>
               <Nav.Link href="#contatti" className="nav-link-custom">

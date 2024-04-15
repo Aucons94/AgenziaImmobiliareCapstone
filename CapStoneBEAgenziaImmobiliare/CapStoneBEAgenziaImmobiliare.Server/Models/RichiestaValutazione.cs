@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CapStoneBEAgenziaImmobiliare.Server.Models;
 
-public partial class RichiesteValutazione
+public partial class RichiestaValutazione
 {
+    [Key]
     public int IdValutazione { get; set; }
 
+    [ForeignKey("Cliente")]
     public int FkIdCliente { get; set; }
 
-    public int? FkIdStaff { get; set; }
+    [ForeignKey("User")]
+    public int? FkIdUser { get; set; }
 
     public string Indirizzo { get; set; } = null!;
 
@@ -35,7 +40,7 @@ public partial class RichiesteValutazione
 
     public bool Cancellato { get; set; }
 
-    public virtual Clienti FkIdClienteNavigation { get; set; } = null!;
+    public virtual Cliente Cliente { get; set; }
 
-    public virtual Staff? FkIdStaffNavigation { get; set; }
+    public virtual User User { get; set; }
 }

@@ -3,7 +3,7 @@
 "ServerUrl": "https://localhost:5173",
 "RedirectUrl": "",
 "LaunchCommand": "npm run dev",
-"WorkingDirectory": "C:\\Users\\Alessandro\\Desktop\\Capstone\\Back-end\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\..\\capstonebeagenziaimmobiliare.client",
+"WorkingDirectory": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\..\\capstonebeagenziaimmobiliare.client",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }

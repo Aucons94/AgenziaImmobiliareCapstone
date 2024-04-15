@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "sUlG/i64oaMMrEEklC6BAQ16xoKfzCAT3A65iVaQq/E=",
+  "Hash": "gykpyLJtPmTvJPHD4wrMYg2vu9AwI5XNnzzdaHvc6SA=",
   "Source": "CapStoneBEAgenziaImmobiliare.Server",
   "BasePath": "_content/CapStoneBEAgenziaImmobiliare.Server",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "C:\\Users\\Alessandro\\Desktop\\Capstone\\Back-end\\CapStoneBEAgenziaImmobiliare\\capstonebeagenziaimmobiliare.client\\capstonebeagenziaimmobiliare.client.esproj",
+      "Identity": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\capstonebeagenziaimmobiliare.client\\capstonebeagenziaimmobiliare.client.esproj",
       "Version": 2,
       "Source": "capstonebeagenziaimmobiliare.client",
       "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
@@ -59,10 +59,10 @@
       "OriginalItemSpec": "C:\\Users\\Alessandro\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.3\\staticwebassets\\QuickGrid.razor.js"
     },
     {
-      "Identity": "C:\\Users\\Alessandro\\Desktop\\Capstone\\Back-end\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\CapStoneBEAgenziaImmobiliare.Server.styles.css",
+      "Identity": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\CapStoneBEAgenziaImmobiliare.Server.styles.css",
       "SourceId": "CapStoneBEAgenziaImmobiliare.Server",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Alessandro\\Desktop\\Capstone\\Back-end\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/CapStoneBEAgenziaImmobiliare.Server",
       "RelativePath": "CapStoneBEAgenziaImmobiliare.Server.styles.css",
       "AssetKind": "All",
@@ -75,7 +75,7 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Alessandro\\Desktop\\Capstone\\Back-end\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\CapStoneBEAgenziaImmobiliare.Server.styles.css"
+      "OriginalItemSpec": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\CapStoneBEAgenziaImmobiliare.Server.styles.css"
     }
   ]
 }

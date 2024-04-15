@@ -21,6 +21,7 @@ namespace CapStoneBEAgenziaImmobiliare.Server.Controllers
         {
             var baseUrl = $"{Request.Scheme}://{Request.Host}/images/staff/";
             var staffList = await _context.Staff
+                .Where(staff => !staff.Cancellato)
                 .Join(_context.Ruoli, 
                       staff => staff.FkIdRuolo, 
                       ruolo => ruolo.IdRuolo, 
@@ -29,7 +30,7 @@ namespace CapStoneBEAgenziaImmobiliare.Server.Controllers
                           Nome = staff.Nome,
                           Cognome = staff.Cognome,
                           Foto = staff.Foto != null ? baseUrl + Path.GetFileName(staff.Foto) : null,
-                          Ruolo = ruolo.Ruolo
+                          Ruolo = ruolo.Role
                       })
                 .ToListAsync();
 

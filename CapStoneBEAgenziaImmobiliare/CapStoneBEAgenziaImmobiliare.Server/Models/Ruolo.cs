@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CapStoneBEAgenziaImmobiliare.Server.Models;
 
-public partial class Ruoli
+public partial class Ruolo
 {
+    [Key]
     public int IdRuolo { get; set; }
 
-    public string Ruolo { get; set; } = null!;
+    public string Role { get; set; } = null!;
 }

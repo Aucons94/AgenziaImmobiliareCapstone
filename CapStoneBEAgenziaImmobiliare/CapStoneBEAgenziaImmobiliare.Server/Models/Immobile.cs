@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CapStoneBEAgenziaImmobiliare.Server.Models;
 
-public partial class Immobili
+public partial class Immobile
 {
+    [Key]
     public int IdImmobile { get; set; }
 
-    public int? FkIdStaff { get; set; }
+    [ForeignKey("User")]
+    public int? FkIdUser { get; set; }
 
     public string Titolo { get; set; } = null!;
 
@@ -47,7 +51,7 @@ public partial class Immobili
 
     public bool Locazione { get; set; }
 
-    public virtual Staff? FkIdStaffNavigation { get; set; }
+    public virtual User User { get; set; }
 
-    public virtual ICollection<ImmaginiCase> ImmaginiCase { get; set; } = new List<ImmaginiCase>();
+    public virtual ICollection<ImmagineCasa> ImmagineCasa { get; set; }
 }

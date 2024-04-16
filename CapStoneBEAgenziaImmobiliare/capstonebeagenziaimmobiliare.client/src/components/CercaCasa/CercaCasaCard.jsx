@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Card, Button, Badge } from "react-bootstrap";
 import PropTypes from "prop-types";
 
@@ -25,7 +26,9 @@ const CercaCasaCard = ({ immobile }) => {
             Camere: {immobile.camereDaLetto || "N/D"} Bagni: {immobile.bagni || "N/D"} m²: {immobile.metratura || "N/D"}
           </div>
         </Card.Text>
-        <Button variant="primary">Dettagli</Button>
+        <Link to={`/dettaglio/${immobile.idImmobile}`}>
+          <Button variant="primary">Dettagli</Button>
+        </Link>
       </Card.Body>
     </Card>
   );
@@ -42,6 +45,7 @@ CercaCasaCard.propTypes = {
     camereDaLetto: PropTypes.number,
     bagni: PropTypes.number,
     metratura: PropTypes.number,
+    idImmobile: PropTypes.number.isRequired, // Aggiunta dell'idImmobile come requisito
   }).isRequired,
 };
 

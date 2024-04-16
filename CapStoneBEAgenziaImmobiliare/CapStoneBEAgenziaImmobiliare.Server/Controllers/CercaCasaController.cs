@@ -44,6 +44,7 @@ namespace CapStoneBEAgenziaImmobiliare.Server.Controllers
             var risultatiRicerca = await query
                 .Select(immobile => new
                 {
+                    immobile.IdImmobile,    
                     immobile.Titolo,
                     immobile.Prezzo,
                     TipoProprieta = immobile.TipoProprietà,

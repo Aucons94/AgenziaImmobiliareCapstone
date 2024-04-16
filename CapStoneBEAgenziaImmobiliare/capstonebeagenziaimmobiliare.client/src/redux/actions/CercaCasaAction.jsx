@@ -21,11 +21,11 @@ export function fetchRicercaImmobili(tipoProprieta, ricerca, affitto = false) {
     dispatch(fetchRicercaImmobiliBegin());
     const queryParams = new URLSearchParams({
       tipoProprieta: tipoProprieta,
-      locazione: affitto, // Aggiunto qui per inviare al backend
+      locazione: affitto,
     });
 
     if (ricerca.trim() !== "") {
-      queryParams.append("ricerca", ricerca); // Cambiato da comune e indirizzo a ricerca per allinearlo con il backend
+      queryParams.append("ricerca", ricerca);
     }
 
     return fetch(`https://localhost:7124/CercaCasa/cercaImmobili?${queryParams}`)
@@ -39,7 +39,6 @@ export function fetchRicercaImmobili(tipoProprieta, ricerca, affitto = false) {
   };
 }
 
-// Funzione ausiliaria per gestire le risposte con errore
 function handleErrors(response) {
   if (!response.ok) {
     throw Error(response.statusText);

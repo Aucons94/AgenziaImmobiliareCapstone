@@ -1,8 +1,8 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, SET_LOGGED_PROFILE } from "../actions/loginAction";
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, SET_LOGGED_PROFILE, LOGOUT } from "../actions/loginAction";
 
 const initialState = {
   isLoading: false,
-  user: {},
+  user: JSON.parse(localStorage.getItem("user")) || {},
   error: null,
 };
 
@@ -33,6 +33,8 @@ const loginReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
       };
+    case LOGOUT:
+      return { ...initialState, user: {} };
     default:
       return state;
   }

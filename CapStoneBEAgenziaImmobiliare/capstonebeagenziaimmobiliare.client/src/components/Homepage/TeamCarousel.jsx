@@ -17,9 +17,10 @@ const TeamCarousel = () => {
     dispatch(fetchStaff());
   }, [dispatch]);
 
+  const numToShow = staffData.items.length >= 3;
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: numToShow,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -30,7 +31,7 @@ const TeamCarousel = () => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          infinite: true,
+          infinite: staffData.items.length >= 3,
           dots: true,
         },
       },
@@ -40,6 +41,7 @@ const TeamCarousel = () => {
           slidesToShow: 2,
           slidesToScroll: 1,
           initialSlide: 2,
+          infinite: staffData.items.length >= 2,
         },
       },
       {
@@ -47,6 +49,7 @@ const TeamCarousel = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          infinite: staffData.items.length >= 1,
         },
       },
     ],

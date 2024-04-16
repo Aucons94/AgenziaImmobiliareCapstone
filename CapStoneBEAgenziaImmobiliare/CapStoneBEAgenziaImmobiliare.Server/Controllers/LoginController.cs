@@ -37,6 +37,7 @@ namespace PortaleBiblioteca.Server.Controllers
                         {
                             user.Nome,
                             user.Cognome,
+                            Role = user.Ruolo.Role
                         }
                     }
                 );
@@ -50,7 +51,7 @@ namespace PortaleBiblioteca.Server.Controllers
             
             var user = _db.Staff
                 .Include(u => u.Ruolo)
-                .FirstOrDefault(u => u.Nome == login.NomeCognome && u.Password == login.Password);
+                .FirstOrDefault(u => (u.Nome + " " + u.Cognome) == login.NomeCognome && u.Password == login.Password);
 
             if (user == null)
             {

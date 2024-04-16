@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { Button, Col, Container, FormControl, Row, Alert } from "react-bootstrap";
-import CercaCasaCard from "./CercaCasa/CercaCasaCard";
-import { fetchRicercaImmobili } from "../redux/actions/CercaCasaAction";
+import CercaCasaCard from "./CercaCasaCard";
+import { fetchRicercaImmobili } from "../../redux/actions/CercaCasaAction";
 import { useDispatch, useSelector } from "react-redux";
 
 const CercaCasaPage = () => {

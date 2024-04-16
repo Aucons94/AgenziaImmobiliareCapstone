@@ -261,3 +261,28 @@ footer {
     color: $font-color-white;
   }
 }
+
+//V       V EEEEE  N   N DDDD   I  CCCCC   A   SSSSS   A   PPPPP   A   GGGG  EEEEE
+// V     V  E      NN  N D   D  I  C      A A  S      A A  P   P  A A  G     E
+//  V   V   EEEE   N N N D   D  I  C     AAAAA  SSS  AAAAA PPPPP AAAAA G  GG EEEE
+//   V V    E      N  NN D   D  I  C     A   A     S A   A P     A   A G   G E
+//    V     EEEEE  N   N DDDD   I  CCCCC A   A SSSSS A   A P     A   A  GGG  EEEEE
+
+.custom-inputVendiCasa {
+  background-color: #f8f9fa;
+  border: 1px solid $primary-color;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+
+  &:focus {
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.25);
+    border-color: #80bdff;
+  }
+}
+
+.vendiCasaPageButton {
+  background-color: $primary-color;
+  color: $font-color-white;
+  &:hover {
+    background-color: $background-color-hover;
+  }
+}

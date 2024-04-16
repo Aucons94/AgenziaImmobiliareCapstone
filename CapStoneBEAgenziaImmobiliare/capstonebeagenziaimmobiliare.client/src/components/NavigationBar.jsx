@@ -1,6 +1,21 @@
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/actions/loginAction";
 
-const NavigationBar = ({ isAdmin, isLoggedIn, handleLogout }) => {
+const selectUserData = (state) => state.login.user;
+const selectIsLoggedIn = (state) => !!state.login.user && !!state.login.user.nome;
+
+const NavigationBar = () => {
+  const user = useSelector(selectUserData);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+  };
+
   return (
     <div className="divNav">
       <Container fluid className="customNavbar">
@@ -25,14 +40,19 @@ const NavigationBar = ({ isAdmin, isLoggedIn, handleLogout }) => {
               <Nav.Link href="#contatti" className="nav-link-custom">
                 Contatti
               </Nav.Link>
-              {isAdmin && (
-                <NavDropdown title="Admin" id="admin-dropdown" className="nav-link-custom">
-                  <NavDropdown.Item href="#gestisci-immobili" className="navdropdown-item-custom">
+              {isLoggedIn && user && (
+                <NavDropdown title="Gestione" id="admin-dropdown" className="nav-link-custom">
+                  <NavDropdown.Item href="/GestioneImmobili" className="navdropdown-item-custom">
                     Gestisci Immobili
                   </NavDropdown.Item>
-                  <NavDropdown.Item href="#gestisci-utenti" className="navdropdown-item-custom">
-                    Gestisci Utenti
+                  <NavDropdown.Item href="#gestisci-richieste" className="navdropdown-item-custom">
+                    Gestisci Richieste
                   </NavDropdown.Item>
+                  {user.role === "Master Broker" && (
+                    <NavDropdown.Item href="#gestisci-utenti" className="navdropdown-item-custom">
+                      Gestisci Utenti
+                    </NavDropdown.Item>
+                  )}
                 </NavDropdown>
               )}
               {isLoggedIn ? (
@@ -40,7 +60,7 @@ const NavigationBar = ({ isAdmin, isLoggedIn, handleLogout }) => {
                   Logout
                 </Nav.Link>
               ) : (
-                <Nav.Link href="#login" className="nav-link-custom">
+                <Nav.Link href="/Login" className="nav-link-custom">
                   Login
                 </Nav.Link>
               )}

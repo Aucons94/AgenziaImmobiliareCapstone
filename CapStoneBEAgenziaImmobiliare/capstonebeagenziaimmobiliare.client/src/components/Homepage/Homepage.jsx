@@ -1,6 +1,6 @@
-import HomeCarousel from "./Homepage/HomeCarousel";
-import Searchbar from "./Homepage/Searchbar";
-import TeamCarousel from "./Homepage/TeamCarousel";
+import HomeCarousel from "./HomeCarousel";
+import Searchbar from "./Searchbar";
+import TeamCarousel from "./TeamCarousel";
 
 const Homepage = () => {
   return (

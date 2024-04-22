@@ -6,6 +6,12 @@ import loginReducer from "../reducers/loginReducer";
 import { valutazioneReducer } from "../reducers/vendiCasaReducer";
 import { gestioneimmobiliReducer } from "../reducers/gestioneImmobiliReducers";
 import dettaglioImmobileReducer from "../reducers/dettagliImmobileReducer";
+import staffMembersReducer, {
+  modificaDettagliReducer,
+  modificaImmobileReducer,
+} from "../reducers/modificaImmobileReducer";
+import staffMembersCreateReducer, { creaImmobileReducer } from "../reducers/creaImmobileReducer";
+import gestioneValutazioniReducer from "../reducers/gestioneValutazioniReducer";
 
 const rootReducer = combineReducers({
   staff: staffReducer,
@@ -15,6 +21,12 @@ const rootReducer = combineReducers({
   valutazione: valutazioneReducer,
   gestioneImmobili: gestioneimmobiliReducer,
   dettagliImmobile: dettaglioImmobileReducer,
+  modificaImmobile: modificaImmobileReducer,
+  modificaDettagli: modificaDettagliReducer,
+  modificaStaff: staffMembersReducer,
+  creaImmobile: creaImmobileReducer,
+  creaStaff: staffMembersCreateReducer,
+  gestioneValutazioni: gestioneValutazioniReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

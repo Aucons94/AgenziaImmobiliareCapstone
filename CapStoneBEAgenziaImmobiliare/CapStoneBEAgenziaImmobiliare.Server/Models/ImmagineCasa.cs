@@ -15,8 +15,6 @@ public partial class ImmagineCasa
 
     public string Immagine { get; set; } = null!;
 
-    public string? DescrizioneImmagine { get; set; }
-
     public bool ImmagineCopertina { get; set; }
 
     public virtual Immobile Immobile { get; set; } = null!;

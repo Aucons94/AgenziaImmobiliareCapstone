@@ -12,6 +12,10 @@ import { useDispatch } from "react-redux";
 import { verificaToken } from "./redux/utils/authToken";
 import GestioneImmobili from "./components/GestioneImmobili/GestioneImmobiliPage";
 import DettagliPage from "./components/DettaglioImmobile/DettagliPage";
+import ModificaImmobile from "./components/GestioneImmobili/ModificaImmobile";
+import CreaImmobile from "./components/CreaImmobile/CreaImmobile";
+import { GestioneValutazioni } from "./components/GestioneValutazioni/GestioneValutazioni";
+import DettagliValutazione from "./components/GestioneValutazioni/DettagliValutazione";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,7 +32,12 @@ function App() {
         <Route path="/Login" element={<LoginPage />} />
         <Route path="/VendiCasa" element={<VendiCasaPage />} />
         <Route path="/GestioneImmobili" element={<GestioneImmobili />} />
-        <Route path="/dettaglio/:idImmobile" element={<DettagliPage />} />
+        <Route path="/Dettaglio/:idImmobile" element={<DettagliPage />} />
+        <Route path="/ModificaImmobile/:idImmobile" element={<ModificaImmobile />} />
+        <Route path="/CreaImmobile" element={<CreaImmobile />} />
+        <Route path="/GestioneValutazioni" element={<GestioneValutazioni />} />
+        <Route path="/valutazioni/:id" element={<DettagliValutazione />} />
+        <Route path="*" element={<div>404 - Pagina non trovata</div>} />
       </Routes>
       <Footer />
     </BrowserRouter>

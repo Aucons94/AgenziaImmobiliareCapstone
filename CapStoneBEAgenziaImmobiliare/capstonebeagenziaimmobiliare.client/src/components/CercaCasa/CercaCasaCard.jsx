@@ -26,7 +26,7 @@ const CercaCasaCard = ({ immobile }) => {
             Camere: {immobile.camereDaLetto || "N/D"} Bagni: {immobile.bagni || "N/D"} m²: {immobile.metratura || "N/D"}
           </div>
         </Card.Text>
-        <Link to={`/dettaglio/${immobile.idImmobile}`}>
+        <Link to={`/Dettaglio/${immobile.idImmobile}`}>
           <Button variant="primary">Dettagli</Button>
         </Link>
       </Card.Body>

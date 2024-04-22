@@ -4,6 +4,7 @@ using CapStoneBEAgenziaImmobiliare.Server.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CapStoneBEAgenziaImmobiliare.Server.Migrations
 {
     [DbContext(typeof(AgenziaImmobiliareContext))]
-    partial class AgenziaImmobiliareContextModelSnapshot : ModelSnapshot
+    [Migration("20240418124850_NewModificata")]
+    partial class NewModificata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,7 +65,7 @@ namespace CapStoneBEAgenziaImmobiliare.Server.Migrations
 
                     b.HasIndex("FkIdUserCliente");
 
-                    b.ToTable("Clienti", (string)null);
+                    b.ToTable("Clienti");
                 });
 
             modelBuilder.Entity("CapStoneBEAgenziaImmobiliare.Server.Models.ImmagineCasa", b =>
@@ -87,7 +90,7 @@ namespace CapStoneBEAgenziaImmobiliare.Server.Migrations
 
                     b.HasIndex("FkIdImmobile");
 
-                    b.ToTable("ImmaginiCase", (string)null);
+                    b.ToTable("ImmaginiCase");
                 });
 
             modelBuilder.Entity("CapStoneBEAgenziaImmobiliare.Server.Models.Immobile", b =>
@@ -167,7 +170,7 @@ namespace CapStoneBEAgenziaImmobiliare.Server.Migrations
 
                     b.HasIndex("FkIdUser");
 
-                    b.ToTable("Immobili", (string)null);
+                    b.ToTable("Immobili");
                 });
 
             modelBuilder.Entity("CapStoneBEAgenziaImmobiliare.Server.Models.Richiesta", b =>
@@ -218,7 +221,7 @@ namespace CapStoneBEAgenziaImmobiliare.Server.Migrations
 
                     b.HasIndex("FkIdUser");
 
-                    b.ToTable("Richieste", (string)null);
+                    b.ToTable("Richieste");
                 });
 
             modelBuilder.Entity("CapStoneBEAgenziaImmobiliare.Server.Models.RichiestaValutazione", b =>
@@ -279,7 +282,7 @@ namespace CapStoneBEAgenziaImmobiliare.Server.Migrations
 
                     b.HasIndex("FkIdUser");
 
-                    b.ToTable("RichiesteValutazione", (string)null);
+                    b.ToTable("RichiesteValutazione");
                 });
 
             modelBuilder.Entity("CapStoneBEAgenziaImmobiliare.Server.Models.Ruolo", b =>
@@ -296,7 +299,7 @@ namespace CapStoneBEAgenziaImmobiliare.Server.Migrations
 
                     b.HasKey("IdRuolo");
 
-                    b.ToTable("Ruoli", (string)null);
+                    b.ToTable("Ruoli");
                 });
 
             modelBuilder.Entity("CapStoneBEAgenziaImmobiliare.Server.Models.User", b =>
@@ -336,7 +339,7 @@ namespace CapStoneBEAgenziaImmobiliare.Server.Migrations
 
                     b.HasIndex("FkIdRuolo");
 
-                    b.ToTable("Staff", (string)null);
+                    b.ToTable("Staff");
                 });
 
             modelBuilder.Entity("CapStoneBEAgenziaImmobiliare.Server.Models.Cliente", b =>

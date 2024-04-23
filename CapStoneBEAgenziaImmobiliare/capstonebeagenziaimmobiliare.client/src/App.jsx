@@ -16,6 +16,8 @@ import ModificaImmobile from "./components/GestioneImmobili/ModificaImmobile";
 import CreaImmobile from "./components/CreaImmobile/CreaImmobile";
 import { GestioneValutazioni } from "./components/GestioneValutazioni/GestioneValutazioni";
 import DettagliValutazione from "./components/GestioneValutazioni/DettagliValutazione";
+import GestioneUtenti from "./components/GestioneUtenti/GestioneUtenti";
+import ModificaUtente from "./components/GestioneUtenti/ModificaUtente";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +39,8 @@ function App() {
         <Route path="/CreaImmobile" element={<CreaImmobile />} />
         <Route path="/GestioneValutazioni" element={<GestioneValutazioni />} />
         <Route path="/valutazioni/:id" element={<DettagliValutazione />} />
+        <Route path="/GestioneUtenti" element={<GestioneUtenti />} />
+        <Route path="/ModificaUtente/:id" element={<ModificaUtente />} />
         <Route path="*" element={<div>404 - Pagina non trovata</div>} />
       </Routes>
       <Footer />

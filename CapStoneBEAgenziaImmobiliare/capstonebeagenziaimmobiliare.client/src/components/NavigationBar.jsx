@@ -49,7 +49,7 @@ const NavigationBar = () => {
                     Gestisci Valutazioni
                   </NavDropdown.Item>
                   {user.role === "Master Broker" && (
-                    <NavDropdown.Item href="#gestisci-utenti" className="navdropdown-item-custom">
+                    <NavDropdown.Item href="/GestioneUtenti" className="navdropdown-item-custom">
                       Gestisci Utenti
                     </NavDropdown.Item>
                   )}

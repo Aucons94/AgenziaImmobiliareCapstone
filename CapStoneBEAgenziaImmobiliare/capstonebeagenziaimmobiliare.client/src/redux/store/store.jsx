@@ -12,6 +12,7 @@ import staffMembersReducer, {
 } from "../reducers/modificaImmobileReducer";
 import staffMembersCreateReducer, { creaImmobileReducer } from "../reducers/creaImmobileReducer";
 import gestioneValutazioniReducer from "../reducers/gestioneValutazioniReducer";
+import gestioneUtentiReducer from "../reducers/gestioneUtentiReducer";
 
 const rootReducer = combineReducers({
   staff: staffReducer,
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   creaImmobile: creaImmobileReducer,
   creaStaff: staffMembersCreateReducer,
   gestioneValutazioni: gestioneValutazioniReducer,
+  gestioneUtenti: gestioneUtentiReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

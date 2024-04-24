@@ -8,7 +8,7 @@ function CreaUtente() {
     nome: "",
     cognome: "",
     telefono: "",
-    ruolo: "",
+    fkIdRuolo: "", // Cambiato da 'ruolo' a 'fkIdRuolo'
     password: "",
     confermaPassword: "",
     foto: null,
@@ -60,9 +60,9 @@ function CreaUtente() {
           <Form.Label>Telefono</Form.Label>
           <Form.Control type="text" name="telefono" value={formData.telefono} onChange={handleChange} required />
         </Form.Group>
-        <Form.Group controlId="ruolo">
+        <Form.Group controlId="fkIdRuolo">
           <Form.Label>Ruolo</Form.Label>
-          <Form.Control as="select" name="ruolo" value={formData.ruolo} onChange={handleChange} required>
+          <Form.Control as="select" name="fkIdRuolo" value={formData.fkIdRuolo} onChange={handleChange} required>
             <option value="">Seleziona un ruolo</option>
             {ruoli.map((role) => (
               <option key={role.idRuolo} value={role.idRuolo}>

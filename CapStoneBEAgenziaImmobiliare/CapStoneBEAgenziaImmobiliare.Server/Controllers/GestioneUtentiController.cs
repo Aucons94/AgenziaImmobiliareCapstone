@@ -4,6 +4,7 @@ using CapStoneBEAgenziaImmobiliare.Server.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Humanizer.Localisation;
+using Microsoft.Extensions.Hosting.Internal;
 
 
 [Authorize(Roles = "Master Broker")]
@@ -13,6 +14,8 @@ public class GestioneUtentiController : ControllerBase
 {
     private readonly AgenziaImmobiliareContext _context;
     private readonly string _staffImagesPath;
+    private readonly IWebHostEnvironment _hostingEnvironment;
+    private readonly ILogger<GestioneUtentiController> _logger;
 
     public GestioneUtentiController(AgenziaImmobiliareContext context, IConfiguration configuration)
     {
@@ -157,9 +160,18 @@ public class GestioneUtentiController : ControllerBase
         return Ok(ruoli);
     }
 
+    public class UserCreateDto
+    {
+        public string Nome { get; set; }
+        public string Cognome { get; set; }
+        public string Telefono { get; set; }
+        public int FkIdRuolo { get; set; }
+        public IFormFile Foto { get; set; }
+        public string Password { get; set; }
+    }
 
     [HttpPost]
-    public async Task<IActionResult> CreaUtente([FromForm] UserDto newUser)
+    public async Task<IActionResult> CreaUtente([FromForm] UserCreateDto newUser)
     {
         try
         {
@@ -168,16 +180,39 @@ public class GestioneUtentiController : ControllerBase
                 Nome = newUser.Nome,
                 Cognome = newUser.Cognome,
                 Telefono = newUser.Telefono,
-
+                FkIdRuolo = newUser.FkIdRuolo,
+                Password = newUser.Password 
             };
+
+            if (newUser.Foto != null)
+            {
+                var staffImagesPath = _staffImagesPath;
+                var fileName = Path.GetFileNameWithoutExtension(newUser.Foto.FileName);
+                var extension = Path.GetExtension(newUser.Foto.FileName);
+                var fileModel = $"{fileName}_{DateTime.Now:yyyyMMddHHmmss}{extension}";
+                var filePath = Path.Combine(staffImagesPath, fileModel);
+
+                if (!Directory.Exists(staffImagesPath))
+                {
+                    Directory.CreateDirectory(staffImagesPath);
+                }
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await newUser.Foto.CopyToAsync(stream);
+                }
+                user.Foto = Path.Combine("images", "staff", fileModel);
+            }
+
             _context.Staff.Add(user);
             await _context.SaveChangesAsync();
             return Ok(user);
         }
         catch (Exception ex)
         {
-            return StatusCode(500, "Errore interno del server");
+            return StatusCode(500, "Errore interno del server: " + ex.Message);
         }
     }
+
 
 }

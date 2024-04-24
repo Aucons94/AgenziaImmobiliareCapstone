@@ -13,12 +13,12 @@ import { verificaToken } from "./redux/utils/authToken";
 import GestioneImmobili from "./components/GestioneImmobili/GestioneImmobiliPage";
 import DettagliPage from "./components/DettaglioImmobile/DettagliPage";
 import ModificaImmobile from "./components/GestioneImmobili/ModificaImmobile";
-import CreaImmobile from "./components/CreaImmobile/CreaImmobile";
 import { GestioneValutazioni } from "./components/GestioneValutazioni/GestioneValutazioni";
 import DettagliValutazione from "./components/GestioneValutazioni/DettagliValutazione";
 import GestioneUtenti from "./components/GestioneUtenti/GestioneUtenti";
 import ModificaUtente from "./components/GestioneUtenti/ModificaUtente";
 import CreaUtente from "./components/GestioneUtenti/CreaUtente";
+import CreaImmobile from "./components/GestioneImmobili/CreaImmobile";
 
 function App() {
   const dispatch = useDispatch();

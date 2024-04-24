@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
 using CapStoneBEAgenziaImmobiliare.Server.Models;
+using System;
 
 namespace CapStoneBEAgenziaImmobiliare.Server.Controllers;
 
@@ -41,18 +42,24 @@ public class CreaImmobileController : ControllerBase
         public bool Pubblicata { get; set; }
         public bool Locazione { get; set; }
         public int? FkIdUser { get; set; }
-        public List<IFormFile>? ImmaginiCasa { get; set; }
+        public List<IFormFile> ImmaginiCasa { get; set; }
+        public List<bool> ImmagineCopertina { get; set; }
     }
 
     [HttpPost]
     [Authorize(Roles = "Master Broker, Coordinatrice")]
     public async Task<IActionResult> CreateImmobile([FromForm] ImmobileCreateDto immobileCreateDto)
     {
-
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
+
+        if (immobileCreateDto.ImmaginiCasa == null || !immobileCreateDto.ImmaginiCasa.Any())
+        {
+            return BadRequest("Almeno un'immagine è obbligatoria per la creazione dell'immobile.");
+        }
+
 
         var immobile = new Immobile
         {
@@ -80,30 +87,33 @@ public class CreaImmobileController : ControllerBase
         _context.Immobili.Add(immobile);
         await _context.SaveChangesAsync();
 
-        if (immobileCreateDto.ImmaginiCasa != null && immobileCreateDto.ImmaginiCasa.Count > 0)
+        int index = 0;
+        foreach (var file in immobileCreateDto.ImmaginiCasa)
         {
-            foreach (var file in immobileCreateDto.ImmaginiCasa)
+            bool isCover = immobileCreateDto.ImmagineCopertina[index];
+            if (file.Length > 0)
             {
-                if (file.Length > 0)
+                string basePath = @"C:\Users\Alessandro\Desktop\Capstone\AgenziaImmobiliare\CapStoneBEAgenziaImmobiliare\CapStoneBEAgenziaImmobiliare.Server\";
+                var fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                var extension = Path.GetExtension(file.FileName);
+                var fileModel = $"{fileName}_{DateTime.Now:yyyyMMddHHmmss}{extension}";
+                var filePath = Path.Combine(basePath, "images", "immobili", fileModel);
+                using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-
-                    string basePath = @"C:\Users\Alessandro\Desktop\Capstone\AgenziaImmobiliare\CapStoneBEAgenziaImmobiliare\CapStoneBEAgenziaImmobiliare.Server\";
-                    var filePath = Path.Combine(basePath, "images", "immobili", file.FileName);
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await file.CopyToAsync(stream);
-                    }
-
-                    var immagine = new ImmagineCasa
-                    {
-                        FkIdImmobile = immobile.IdImmobile,
-                        Immagine = filePath
-                    };
-                    _context.ImmaginiCase.Add(immagine);
+                    await file.CopyToAsync(stream);
                 }
+
+                var immagine = new ImmagineCasa
+                {
+                    FkIdImmobile = immobile.IdImmobile,
+                    Immagine = fileModel,
+                    ImmagineCopertina = isCover
+                };
+                _context.ImmaginiCase.Add(immagine);
             }
-            await _context.SaveChangesAsync();
+            index++;
         }
+        await _context.SaveChangesAsync();
 
         return Ok(new { message = "Immobile creato con successo." });
     }

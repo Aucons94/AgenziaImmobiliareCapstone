@@ -139,7 +139,7 @@ function ModificaUtente() {
                 onChange={handlePasswordChange}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="confirmPassword">
+            <Form.Group className="mb-3">
               <Form.Label>Conferma Nuova Password</Form.Label>
               <FormControl
                 type={showPassword ? "text" : "password"}
@@ -155,6 +155,7 @@ function ModificaUtente() {
                 className="mt-2"
               />
             </Form.Group>
+
             <Button variant="primary" type="submit">
               Aggiorna Utente
             </Button>

@@ -11,9 +11,12 @@ import {
   MODIFICA_UTENTE_REQUEST,
   MODIFICA_UTENTE_SUCCESS,
   MODIFICA_UTENTE_FAILURE,
-  CARICA_RUOLI_SUCCESS,
   CARICA_RUOLI_REQUEST,
+  CARICA_RUOLI_SUCCESS,
   CARICA_RUOLI_FAILURE,
+  CREA_UTENTE_REQUEST,
+  CREA_UTENTE_SUCCESS,
+  CREA_UTENTE_FAILURE,
 } from "../actions/gestioneUtentiAction";
 
 const initialState = {
@@ -32,6 +35,7 @@ function gestioneUtentiReducer(state = initialState, action) {
     case FETCH_DETTAGLI_UTENTE_REQUEST:
     case MODIFICA_UTENTE_REQUEST:
     case CARICA_RUOLI_REQUEST:
+    case CREA_UTENTE_REQUEST:
       return { ...state, loading: true, error: null };
 
     case CARICA_RUOLI_SUCCESS:
@@ -43,17 +47,16 @@ function gestioneUtentiReducer(state = initialState, action) {
     case FETCH_DETTAGLI_UTENTE_SUCCESS:
       return { ...state, loading: false, userDetail: action.payload };
 
-    case MODIFICA_UTENTE_SUCCESS: {
-      const updatedUsers = state.users.map((user) =>
-        user.idUser === action.payload.idUser ? { ...user, ...action.payload } : user
-      );
+    case MODIFICA_UTENTE_SUCCESS:
+    case CREA_UTENTE_SUCCESS: {
+      const newUsers =
+        action.type === MODIFICA_UTENTE_SUCCESS
+          ? state.users.map((user) => (user.idUser === action.payload.idUser ? { ...user, ...action.payload } : user))
+          : [...state.users, action.payload];
       return {
         ...state,
-        users: updatedUsers,
-        userDetail:
-          state.userDetail && state.userDetail.idUser === action.payload.idUser
-            ? { ...state.userDetail, ...action.payload }
-            : state.userDetail,
+        users: newUsers,
+        loading: false,
       };
     }
 
@@ -65,12 +68,11 @@ function gestioneUtentiReducer(state = initialState, action) {
       };
 
     case CARICA_RUOLI_FAILURE:
-      return { ...state, loading: false, errorRuoli: action.payload };
-
     case FETCH_UTENTI_FAILURE:
     case DELETE_UTENTE_FAILURE:
     case FETCH_DETTAGLI_UTENTE_FAILURE:
     case MODIFICA_UTENTE_FAILURE:
+    case CREA_UTENTE_FAILURE:
       return { ...state, loading: false, error: action.payload };
 
     default:

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using CapStoneBEAgenziaImmobiliare.Server.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Humanizer.Localisation;
 
 
 [Authorize(Roles = "Master Broker")]
@@ -155,4 +156,28 @@ public class GestioneUtentiController : ControllerBase
         }
         return Ok(ruoli);
     }
+
+
+    [HttpPost]
+    public async Task<IActionResult> CreaUtente([FromForm] UserDto newUser)
+    {
+        try
+        {
+            var user = new User
+            {
+                Nome = newUser.Nome,
+                Cognome = newUser.Cognome,
+                Telefono = newUser.Telefono,
+
+            };
+            _context.Staff.Add(user);
+            await _context.SaveChangesAsync();
+            return Ok(user);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "Errore interno del server");
+        }
+    }
+
 }

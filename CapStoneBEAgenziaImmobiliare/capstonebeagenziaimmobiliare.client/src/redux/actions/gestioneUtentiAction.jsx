@@ -15,6 +15,9 @@ export const MODIFICA_UTENTE_FAILURE = "MODIFICA_UTENTE_FAILURE";
 export const CARICA_RUOLI_REQUEST = "CARICA_RUOLI_REQUEST";
 export const CARICA_RUOLI_SUCCESS = "CARICA_RUOLI_SUCCESS";
 export const CARICA_RUOLI_FAILURE = "CARICA_RUOLI_FAILURE";
+export const CREA_UTENTE_REQUEST = "CREA_UTENTE_REQUEST";
+export const CREA_UTENTE_SUCCESS = "CREA_UTENTE_SUCCESS";
+export const CREA_UTENTE_FAILURE = "CREA_UTENTE_FAILURE";
 
 export function fetchGestioneUtenti() {
   return async (dispatch) => {
@@ -95,5 +98,22 @@ export const fetchRuoli = () => async (dispatch) => {
     dispatch({ type: CARICA_RUOLI_SUCCESS, payload: ruoli });
   } catch (error) {
     dispatch({ type: CARICA_RUOLI_FAILURE, payload: error.message });
+  }
+};
+
+export const creaUtente = (userData, setError) => async (dispatch) => {
+  try {
+    const response = await fetchWithAuth("https://localhost:7124/GestioneUtenti", {
+      method: "POST",
+      body: userData,
+    });
+    const data = await response.json();
+    if (response.ok) {
+      dispatch({ type: "CREA_UTENTE_SUCCESS", payload: data });
+    } else {
+      throw new Error(data.message || "Errore durante la creazione dell'utente");
+    }
+  } catch (error) {
+    setError(error.message);
   }
 };

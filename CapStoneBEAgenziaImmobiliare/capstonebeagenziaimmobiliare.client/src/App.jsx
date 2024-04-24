@@ -18,6 +18,7 @@ import { GestioneValutazioni } from "./components/GestioneValutazioni/GestioneVa
 import DettagliValutazione from "./components/GestioneValutazioni/DettagliValutazione";
 import GestioneUtenti from "./components/GestioneUtenti/GestioneUtenti";
 import ModificaUtente from "./components/GestioneUtenti/ModificaUtente";
+import CreaUtente from "./components/GestioneUtenti/CreaUtente";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ function App() {
         <Route path="/valutazioni/:id" element={<DettagliValutazione />} />
         <Route path="/GestioneUtenti" element={<GestioneUtenti />} />
         <Route path="/ModificaUtente/:id" element={<ModificaUtente />} />
+        <Route path="/CreaUtente" element={<CreaUtente />} />
         <Route path="*" element={<div>404 - Pagina non trovata</div>} />
       </Routes>
       <Footer />

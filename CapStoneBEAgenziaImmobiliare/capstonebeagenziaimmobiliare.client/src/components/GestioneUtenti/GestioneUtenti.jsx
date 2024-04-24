@@ -39,11 +39,18 @@ export default function GestioneUtenti() {
     navigate(`/ModificaUtente/${userId}`);
   };
 
+  const handleCreateNew = () => {
+    navigate(`/CreaUtente`);
+  };
+
   if (loading) return <Spinner animation="border" />;
   if (error) return <Alert variant="danger">{error}</Alert>;
 
   return (
     <Container>
+      <Button variant="primary" onClick={handleCreateNew} className="mb-3">
+        Crea Nuovo Utente
+      </Button>
       <Table striped bordered hover>
         <thead>
           <tr>

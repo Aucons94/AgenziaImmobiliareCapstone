@@ -138,7 +138,7 @@ public class GestioneUtentiController : ControllerBase
             }
         }
 
-        return Ok();
+        return Ok(new {message = "Utente aggiornato con successo"});
     }
 
     private bool UserExists(int id) => _context.Staff.Any(e => e.IdUser == id);

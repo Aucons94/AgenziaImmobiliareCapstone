@@ -63,32 +63,24 @@ export const fetchDettagliUtente = (id) => async (dispatch) => {
   }
 };
 
-export const fetchModificaUtente = (id, user, file) => async (dispatch) => {
+export const fetchModificaUtente = (id, formData) => async (dispatch) => {
   dispatch({ type: MODIFICA_UTENTE_REQUEST });
-
-  const formData = new FormData();
-  Object.keys(user).forEach((key) => {
-    if (user[key] !== null && user[key] !== undefined) {
-      formData.append(key, user[key]);
-    }
-  });
-
-  if (file) {
-    formData.append("foto", file);
-  }
   try {
     const response = await fetchWithAuth(`https://localhost:7124/GestioneUtenti/${id}`, {
       method: "PUT",
       body: formData,
     });
 
-    if (!response.ok) {
+    if (response.ok) {
+      const message = await response.json();
+      dispatch({ type: MODIFICA_UTENTE_SUCCESS, payload: message });
+      return message;
+    } else {
       throw new Error("Errore nella modifica dell'utente");
     }
-    const updatedUser = await response.json();
-    dispatch({ type: MODIFICA_UTENTE_SUCCESS, payload: updatedUser });
   } catch (error) {
     dispatch({ type: MODIFICA_UTENTE_FAILURE, payload: error.message });
+    throw error;
   }
 };
 

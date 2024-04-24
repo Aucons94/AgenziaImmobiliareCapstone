@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchDettagliUtente, fetchModificaUtente, fetchRuoli } from "../../redux/actions/gestioneUtentiAction";
-import { Container, Form, Button, Spinner, Alert, Card, Image, FormControl } from "react-bootstrap";
+import { Container, Form, Button, Spinner, Alert, Card, Image, FormControl, Modal } from "react-bootstrap";
 
 function ModificaUtente() {
   const { id } = useParams();
@@ -21,6 +21,7 @@ function ModificaUtente() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
@@ -56,13 +57,25 @@ function ModificaUtente() {
     }
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setUserForm((prev) => ({
+      ...prev,
+      fotoFile: file,
+      foto: URL.createObjectURL(file),
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (newPassword && newPassword !== confirmPassword) {
       alert("Le password non corrispondono.");
       return;
     }
+    setShowConfirmationModal(true);
+  };
 
+  const handleUpdateConfirmation = () => {
     const formData = new FormData();
     formData.append("nome", userForm.nome);
     formData.append("cognome", userForm.cognome);
@@ -72,21 +85,10 @@ function ModificaUtente() {
     if (userForm.fotoFile) {
       formData.append("foto", userForm.fotoFile);
     }
-
     dispatch(fetchModificaUtente(id, formData));
+    setShowConfirmationModal(false);
     setSuccess(true);
-    setTimeout(() => {
-      navigate("/GestioneUtenti");
-    }, 2000);
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setUserForm((prev) => ({
-      ...prev,
-      fotoFile: file,
-      foto: URL.createObjectURL(file),
-    }));
+    navigate("/GestioneUtenti");
   };
 
   if (loading) return <Spinner animation="border" />;
@@ -159,6 +161,20 @@ function ModificaUtente() {
           </Form>
         </Card.Body>
       </Card>
+      <Modal show={showConfirmationModal} onHide={() => setShowConfirmationModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Conferma Modifica</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Sei sicuro di voler aggiornare questo utente?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowConfirmationModal(false)}>
+            Annulla
+          </Button>
+          <Button variant="primary" onClick={handleUpdateConfirmation}>
+            Conferma
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 }

@@ -3,40 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}|CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj|c:\\users\\alessandro\\desktop\\capstone\\agenziaimmobiliare\\capstonebeagenziaimmobiliare\\capstonebeagenziaimmobiliare.server\\controllers\\creaimmobilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}|CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj|solutionrelative:capstonebeagenziaimmobiliare.server\\controllers\\creaimmobilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}|CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj|c:\\users\\alessandro\\desktop\\capstone\\agenziaimmobiliare\\capstonebeagenziaimmobiliare\\capstonebeagenziaimmobiliare.server\\controllers\\gestionevalutazionicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}|CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj|solutionrelative:capstonebeagenziaimmobiliare.server\\controllers\\gestionevalutazionicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}|CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj|c:\\users\\alessandro\\desktop\\capstone\\agenziaimmobiliare\\capstonebeagenziaimmobiliare\\capstonebeagenziaimmobiliare.server\\models\\immaginecasa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}|CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj|solutionrelative:capstonebeagenziaimmobiliare.server\\models\\immaginecasa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}|CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj|c:\\users\\alessandro\\desktop\\capstone\\agenziaimmobiliare\\capstonebeagenziaimmobiliare\\capstonebeagenziaimmobiliare.server\\controllers\\gestioneutenticontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}|CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj|solutionrelative:capstonebeagenziaimmobiliare.server\\controllers\\gestioneutenticontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}|CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj|c:\\users\\alessandro\\desktop\\capstone\\agenziaimmobiliare\\capstonebeagenziaimmobiliare\\capstonebeagenziaimmobiliare.server\\images\\staff\\5add05e9-2b57-401a-b004-b23508e0e225.jpeg||{25834150-CD7E-11D0-92DF-00A0C9138C45}",
-      "RelativeMoniker": "D:0:0:{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}|CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj|solutionrelative:capstonebeagenziaimmobiliare.server\\images\\staff\\5add05e9-2b57-401a-b004-b23508e0e225.jpeg||{25834150-CD7E-11D0-92DF-00A0C9138C45}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}|CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj|c:\\users\\alessandro\\desktop\\capstone\\agenziaimmobiliare\\capstonebeagenziaimmobiliare\\capstonebeagenziaimmobiliare.server\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}|CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj|solutionrelative:capstonebeagenziaimmobiliare.server\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}|CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj|c:\\users\\alessandro\\desktop\\capstone\\agenziaimmobiliare\\capstonebeagenziaimmobiliare\\capstonebeagenziaimmobiliare.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}|CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj|solutionrelative:capstonebeagenziaimmobiliare.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}|CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj|c:\\users\\alessandro\\desktop\\capstone\\agenziaimmobiliare\\capstonebeagenziaimmobiliare\\capstonebeagenziaimmobiliare.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}|CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj|solutionrelative:capstonebeagenziaimmobiliare.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}|CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj|c:\\users\\alessandro\\desktop\\capstone\\agenziaimmobiliare\\capstonebeagenziaimmobiliare\\capstonebeagenziaimmobiliare.server\\models\\ruolo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}|CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj|solutionrelative:capstonebeagenziaimmobiliare.server\\models\\ruolo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}|CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj|c:\\users\\alessandro\\desktop\\capstone\\agenziaimmobiliare\\capstonebeagenziaimmobiliare\\capstonebeagenziaimmobiliare.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{23BB96E7-40E9-4275-B1B9-CCE5ADC628BD}|CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj|solutionrelative:capstonebeagenziaimmobiliare.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,121 +22,44 @@
       "DocumentGroups": [
         {
           "DockedWidth": 238,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ImmagineCasa.cs",
-              "DocumentMoniker": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\Models\\ImmagineCasa.cs",
-              "RelativeDocumentMoniker": "CapStoneBEAgenziaImmobiliare.Server\\Models\\ImmagineCasa.cs",
-              "ToolTip": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\Models\\ImmagineCasa.cs",
-              "RelativeToolTip": "CapStoneBEAgenziaImmobiliare.Server\\Models\\ImmagineCasa.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAQwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-24T19:45:24.947Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "GestioneValutazioniController.cs",
-              "DocumentMoniker": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\Controllers\\GestioneValutazioniController.cs",
-              "RelativeDocumentMoniker": "CapStoneBEAgenziaImmobiliare.Server\\Controllers\\GestioneValutazioniController.cs",
-              "ToolTip": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\Controllers\\GestioneValutazioniController.cs",
-              "RelativeToolTip": "CapStoneBEAgenziaImmobiliare.Server\\Controllers\\GestioneValutazioniController.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAQwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-24T19:51:41.482Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CreaImmobileController.cs",
-              "DocumentMoniker": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\Controllers\\CreaImmobileController.cs",
-              "RelativeDocumentMoniker": "CapStoneBEAgenziaImmobiliare.Server\\Controllers\\CreaImmobileController.cs",
-              "ToolTip": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\Controllers\\CreaImmobileController.cs",
-              "RelativeToolTip": "CapStoneBEAgenziaImmobiliare.Server\\Controllers\\CreaImmobileController.cs",
-              "ViewState": "AQIAAFcAAAAAAAAAAAAuwHEAAAAUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-24T18:03:07.926Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "5add05e9-2b57-401a-b004-b23508e0e225.jpeg",
-              "DocumentMoniker": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\images\\staff\\5add05e9-2b57-401a-b004-b23508e0e225.jpeg",
-              "RelativeDocumentMoniker": "CapStoneBEAgenziaImmobiliare.Server\\images\\staff\\5add05e9-2b57-401a-b004-b23508e0e225.jpeg",
-              "ToolTip": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\images\\staff\\5add05e9-2b57-401a-b004-b23508e0e225.jpeg",
-              "RelativeToolTip": "CapStoneBEAgenziaImmobiliare.Server\\images\\staff\\5add05e9-2b57-401a-b004-b23508e0e225.jpeg",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2024-04-24T18:03:02.27Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GestioneUtentiController.cs",
-              "DocumentMoniker": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\Controllers\\GestioneUtentiController.cs",
-              "RelativeDocumentMoniker": "CapStoneBEAgenziaImmobiliare.Server\\Controllers\\GestioneUtentiController.cs",
-              "ToolTip": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\Controllers\\GestioneUtentiController.cs",
-              "RelativeToolTip": "CapStoneBEAgenziaImmobiliare.Server\\Controllers\\GestioneUtentiController.cs",
-              "ViewState": "AQIAAK4AAAAAAAAAAAAcwMUAAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-22T17:18:15.206Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\appsettings.json",
-              "RelativeDocumentMoniker": "CapStoneBEAgenziaImmobiliare.Server\\appsettings.json",
-              "ToolTip": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\appsettings.json",
-              "RelativeToolTip": "CapStoneBEAgenziaImmobiliare.Server\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-04-24T17:16:06.529Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\Program.cs",
               "RelativeDocumentMoniker": "CapStoneBEAgenziaImmobiliare.Server\\Program.cs",
               "ToolTip": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\Program.cs",
               "RelativeToolTip": "CapStoneBEAgenziaImmobiliare.Server\\Program.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAIAwwCIAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-24T17:16:13.215Z",
+              "WhenOpened": "2024-04-25T13:54:02.944Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GestioneUtentiController.cs",
+              "DocumentMoniker": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\Controllers\\GestioneUtentiController.cs",
+              "RelativeDocumentMoniker": "CapStoneBEAgenziaImmobiliare.Server\\Controllers\\GestioneUtentiController.cs",
+              "ToolTip": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\Controllers\\GestioneUtentiController.cs",
+              "RelativeToolTip": "CapStoneBEAgenziaImmobiliare.Server\\Controllers\\GestioneUtentiController.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAIAwwCIAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-25T13:54:26.059Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Ruolo.cs",
-              "DocumentMoniker": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\Models\\Ruolo.cs",
-              "RelativeDocumentMoniker": "CapStoneBEAgenziaImmobiliare.Server\\Models\\Ruolo.cs",
-              "ToolTip": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\Models\\Ruolo.cs",
-              "RelativeToolTip": "CapStoneBEAgenziaImmobiliare.Server\\Models\\Ruolo.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-23T10:10:40.569Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\Models\\User.cs",
-              "RelativeDocumentMoniker": "CapStoneBEAgenziaImmobiliare.Server\\Models\\User.cs",
-              "ToolTip": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\Models\\User.cs",
-              "RelativeToolTip": "CapStoneBEAgenziaImmobiliare.Server\\Models\\User.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAA1wBMAAAArAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-23T10:07:40.241Z",
-              "EditorCaption": ""
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\appsettings.json",
+              "RelativeDocumentMoniker": "CapStoneBEAgenziaImmobiliare.Server\\appsettings.json",
+              "ToolTip": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\appsettings.json",
+              "RelativeToolTip": "CapStoneBEAgenziaImmobiliare.Server\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-04-25T13:54:12.936Z"
             }
           ]
         }

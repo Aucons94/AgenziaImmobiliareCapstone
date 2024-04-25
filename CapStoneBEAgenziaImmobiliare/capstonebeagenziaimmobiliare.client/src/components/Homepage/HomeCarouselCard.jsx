@@ -21,9 +21,10 @@ const HomeCarouselCard = ({ immobile }) => {
         </Badge>
         <Card.Text>
           <strong>{immobile.prezzo ? `€ ${immobile.prezzo}` : "Prezzo non disponibile"}</strong>
-          Camere: {immobile.camereDaLetto || "N/D"} Bagni: {immobile.bagni || "N/D"} m²: {immobile.metratura || "N/D"}
+          <b> Camere:</b> {immobile.camereDaLetto || "N/D"} <b>Bagni:</b> {immobile.bagni || "N/D"}{" "}
+          <strong>m²: {immobile.metratura || "N/D"}</strong>
         </Card.Text>
-        <Button variant="primary">Dettagli</Button>
+        <Button className="homeCarouselCardButton">Dettagli</Button>
       </Card.Body>
     </Card>
   );

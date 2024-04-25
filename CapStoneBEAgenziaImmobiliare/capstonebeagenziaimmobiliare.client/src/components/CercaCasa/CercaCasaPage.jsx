@@ -29,37 +29,43 @@ const CercaCasaPage = () => {
 
   return (
     <Container className="my-5">
-      <Row className="justify-content-center">
-        <Col lg={8}>
-          <div className="search-bar mb-4 d-flex">
-            <Button
-              onClick={() => setActiveTab("vendita")}
-              className={`me-2 bottoneCercaCasaVenAff  ${activeTab === "vendita" ? "active" : ""}`}
-            >
-              Vendita
-            </Button>
-            <Button
-              onClick={() => setActiveTab("affitto")}
-              className={`me-2 bottoneCercaCasaVenAff  ${activeTab === "affitto" ? "active" : ""}`}
-            >
-              Affitto
-            </Button>
-            <FormControl as="select" value={tipoProprieta} onChange={handleSelect} className="me-2">
-              <option value="Immobili Residenziali">Immobili Residenziali</option>
-              <option value="Immobili Commerciali">Immobili Commerciali</option>
-              <option value="Terreni">Terreni</option>
-            </FormControl>
-            <FormControl
-              type="text"
-              placeholder="Inserisci indirizzo o città"
-              value={ricerca}
-              onChange={(e) => setRicerca(e.target.value)}
-              className="me-2"
-            />
-            <Button onClick={handleSearch}>Cerca</Button>
-          </div>
-          {erroreRicerca && <Alert variant="danger">{erroreRicerca}</Alert>}
+      <h2 className="coloreTitoloCercaCasa mb-5">Cerca la Tua Futura Casa</h2>
+      <Row className="justify-content-center mb-2">
+        <Col xs={12} md={6} lg={3} className="search-bar mb-4 d-flex">
+          <Button
+            onClick={() => setActiveTab("vendita")}
+            className={`me-2 bottoneCercaCasaVenAff  ${activeTab === "vendita" ? "active" : ""}`}
+          >
+            Vendita
+          </Button>
+          <Button
+            onClick={() => setActiveTab("affitto")}
+            className={`me-2 bottoneCercaCasaVenAff  ${activeTab === "affitto" ? "active" : ""}`}
+          >
+            Affitto
+          </Button>
         </Col>
+        <Col xs={12} md={6} lg={3} className="search-bar mb-4 d-flex">
+          <FormControl as="select" value={tipoProprieta} onChange={handleSelect} className="me-2 custom-inputCercaCasa">
+            <option value="Immobili Residenziali">Immobili Residenziali</option>
+            <option value="Immobili Commerciali">Immobili Commerciali</option>
+            <option value="Terreni">Terreni</option>
+          </FormControl>
+        </Col>
+        <Col xs={12} md={6} lg={6} className="search-bar mb-4 d-flex">
+          <FormControl
+            type="text"
+            placeholder="Inserisci indirizzo o città"
+            value={ricerca}
+            onChange={(e) => setRicerca(e.target.value)}
+            className="me-2 custom-inputCercaCasa"
+          />
+          <Button onClick={handleSearch} className="searchCercaCasaButton">
+            Cerca
+          </Button>
+        </Col>
+
+        {erroreRicerca && <Alert variant="danger">{erroreRicerca}</Alert>}
       </Row>
       <Row>
         {ricercaEffettuata && risultatiRicerca.length === 0 ? (

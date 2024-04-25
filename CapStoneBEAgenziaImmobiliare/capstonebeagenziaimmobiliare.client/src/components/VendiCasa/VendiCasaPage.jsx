@@ -56,8 +56,10 @@ export default function ValutazioneForm() {
     <Container className="mt-5">
       {loading && <Alert variant="info">Caricamento in corso...</Alert>}
       {error && <Alert variant="danger">Errore: {error}</Alert>}
+      <h2 className="mb-4 coloreTitoloVendiCasa">Vendi con noi la tua Casa</h2>
       <Form onSubmit={handleSubmit}>
-        <Row>
+        <h3 className="coloreTitoloVendiCasa">I Tuoi Dati</h3>
+        <Row className="borderVendiCasa pb-5">
           <Col md={6}>
             <Form.Group controlId="nome">
               <Form.Label>Nome</Form.Label>
@@ -110,6 +112,9 @@ export default function ValutazioneForm() {
               />
             </Form.Group>
           </Col>
+        </Row>
+        <h3 className="mt-3 coloreTitoloVendiCasa">I Dati della tua Casa</h3>
+        <Row>
           <Col md={12}>
             <Form.Group controlId="indirizzo">
               <Form.Label>Indirizzo</Form.Label>

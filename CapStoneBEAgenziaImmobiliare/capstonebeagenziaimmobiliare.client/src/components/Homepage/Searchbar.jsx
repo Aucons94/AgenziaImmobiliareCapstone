@@ -1,8 +1,8 @@
 import { Button, Col, Container, Dropdown, DropdownButton, FormControl, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setTerminiDiRicerca } from "../../redux/actions/homeAction";
 import { useNavigate } from "react-router-dom";
+import { fetchRicercaImmobili } from "../../redux/actions/CercaCasaAction";
 
 const immaginiDiSfondo = [
   "https://re.replat.com/index.php?ac=view_photo_db&site=131359&photo=personal_top",
@@ -11,9 +11,9 @@ const immaginiDiSfondo = [
 ];
 
 function Searchbar() {
-  const [activeTab, setActiveTab] = useState("vendita");
-  const [tipoProprieta, setTipoProprieta] = useState("Immobili Residenziali"); // Stato aggiunto per tipoProprieta
-  const [ricerca, setRicerca] = useState(""); // Stato aggiunto per gestire il valore della ricerca
+  const [activeTab, setActiveTab] = useState("false");
+  const [tipoProprieta, setTipoProprieta] = useState("Immobili Residenziali");
+  const [ricerca, setRicerca] = useState("");
   const [indiceImmagine, setIndiceImmagine] = useState(0);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ function Searchbar() {
   };
 
   const handleSearch = () => {
-    dispatch(setTerminiDiRicerca(tipoProprieta, ricerca, activeTab));
+    dispatch(fetchRicercaImmobili(tipoProprieta, ricerca, activeTab));
     navigate("/CercaCasa");
   };
 
@@ -58,21 +58,21 @@ function Searchbar() {
             <div>
               <div className="d-flex justify-content-start">
                 <Button
-                  className={`bottoneSearchbarVenAff ${activeTab === "vendita" ? "active" : ""}`}
-                  onClick={() => setActiveTab("vendita")}
+                  className={`bottoneSearchbarVenAff ${activeTab === "false" ? "active" : ""}`}
+                  onClick={() => setActiveTab("false")}
                 >
                   Vendita
                 </Button>
                 <Button
-                  className={`bottoneSearchbarVenAff ${activeTab === "affitto" ? "active" : ""}`}
-                  onClick={() => setActiveTab("affitto")}
+                  className={`bottoneSearchbarVenAff ${activeTab === "true" ? "active" : ""}`}
+                  onClick={() => setActiveTab("true")}
                 >
                   Affitto
                 </Button>
               </div>
               <div className="areaRicerca">
                 <Row className="align-items-center">
-                  <Col xs={12} md={6} lg={3}>
+                  <Col xs={12} md={12} lg={12} xl={3}>
                     <DropdownButton
                       variant="outline-secondary"
                       title={tipoProprieta}
@@ -85,7 +85,7 @@ function Searchbar() {
                       <Dropdown.Item eventKey="Terreni">Terreni</Dropdown.Item>
                     </DropdownButton>
                   </Col>
-                  <Col xs={12} md={6} lg={6}>
+                  <Col xs={12} md={12} lg={12} xl={6}>
                     <FormControl
                       type="text"
                       placeholder="Digita un indirizzo o un punto di interesse..."
@@ -94,7 +94,7 @@ function Searchbar() {
                       onChange={(e) => setRicerca(e.target.value)}
                     />
                   </Col>
-                  <Col xs={12} md={6} lg={3}>
+                  <Col xs={12} md={12} lg={12} xl={3}>
                     <Button variant="primary" className="w-100 m-0 searchCustomButton" onClick={handleSearch}>
                       Cerca
                     </Button>

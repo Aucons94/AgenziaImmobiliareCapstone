@@ -14,8 +14,6 @@ public class GestioneUtentiController : ControllerBase
 {
     private readonly AgenziaImmobiliareContext _context;
     private readonly string _staffImagesPath;
-    private readonly IWebHostEnvironment _hostingEnvironment;
-    private readonly ILogger<GestioneUtentiController> _logger;
 
     public GestioneUtentiController(AgenziaImmobiliareContext context, IConfiguration configuration)
     {
@@ -24,13 +22,22 @@ public class GestioneUtentiController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<User>>> FetchGestioneUtenti()
+    public async Task<ActionResult<IEnumerable<object>>> FetchGestioneUtenti()
     {
         var users = await _context.Staff
-                                   .Where(u => !u.Cancellato)  
-                                   .ToListAsync();
+            .Include(u => u.Ruolo)
+                                  .Where(u => !u.Cancellato)
+                                  .Select(u => new
+                                  {
+                                      IdUser = u.IdUser,
+                                      Nome = u.Nome,
+                                      Cognome = u.Cognome,
+                                      Ruolo = u.Ruolo.Role,
+                                  })
+                                  .ToListAsync();
         return Ok(users);
     }
+
 
     [HttpPut("{id}/delete")]
     public async Task<IActionResult> DeleteUser(int id)
@@ -201,7 +208,7 @@ public class GestioneUtentiController : ControllerBase
                 {
                     await newUser.Foto.CopyToAsync(stream);
                 }
-                user.Foto = Path.Combine("images", "staff", fileModel);
+                user.Foto = Path.Combine(fileModel);
             }
 
             _context.Staff.Add(user);

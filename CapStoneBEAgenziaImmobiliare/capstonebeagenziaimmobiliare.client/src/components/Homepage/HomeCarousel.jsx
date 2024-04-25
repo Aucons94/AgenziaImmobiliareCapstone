@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Button, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import HomeCarouselCard from "./HomeCarouselCard";
 import { fetchImmobili } from "../../redux/actions/homeAction";
 
@@ -68,11 +68,8 @@ const HomeCarousel = () => {
 
   return (
     <Container className="text-center my-5">
-      <div className="d-flex justify-content-between align-items-center mb-3">
+      <div className="d-flex mb-3">
         <h2>Immobili in vetrina</h2>
-        <Button className="homeCarouselButton">
-          Vedi tutto <span className="material-symbols-outlined p-0">arrow_forward_ios</span>
-        </Button>
       </div>
       <p className="text-start">Le migliori offerte immobiliari selezionate per te</p>
       <div

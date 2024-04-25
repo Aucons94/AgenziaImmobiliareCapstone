@@ -55,8 +55,8 @@ const GestioneImmobili = () => {
   return (
     <Container>
       <Row className="justify-content-md-center">
-        <Col md={12} className="text-right mb-3">
-          <Button variant="success" onClick={handleCreateClick}>
+        <Col md={12} className="text-center my-3">
+          <Button className="aggiungiNuovoImmobileButton" onClick={handleCreateClick}>
             Aggiungi Nuovo Immobile
           </Button>
         </Col>
@@ -82,10 +82,10 @@ const GestioneImmobili = () => {
       {immobili.map((immobile) => (
         <Card key={immobile.idImmobile} className="mb-3">
           <Row>
-            <Col md={4}>
+            <Col md={6} lg={4}>
               <Image src={immobile.immagineCopertina || "placeholder-image.jpg"} alt={immobile.titolo} fluid />
             </Col>
-            <Col md={4}>
+            <Col md={6} lg={4}>
               <Card.Body>
                 <Card.Title>{immobile.titolo}</Card.Title>
                 <ListGroup variant="flush">
@@ -123,16 +123,22 @@ const GestioneImmobili = () => {
                 </ListGroup>
               </Card.Body>
             </Col>
-            <Col md={4}>
+            <Col md={12} lg={4}>
               <Card.Body>
                 <div className="d-flex flex-column">
-                  <Button variant="primary" onClick={() => handleDettaglioClick(immobile.idImmobile)}>
+                  <Button
+                    className="dettagliGestioneImmobiliButton"
+                    onClick={() => handleDettaglioClick(immobile.idImmobile)}
+                  >
                     Dettagli
                   </Button>
-                  <Button variant="success" className="mt-2" onClick={() => handleModificaClick(immobile.idImmobile)}>
+                  <Button
+                    className="mt-2 modificaGestioneImmobiliButton"
+                    onClick={() => handleModificaClick(immobile.idImmobile)}
+                  >
                     Modifica
                   </Button>
-                  <Button variant="danger" className="mt-2" onClick={() => handleDeleteClick(immobile)}>
+                  <Button className="mt-2 cancellaGestioneImmobiliButton" onClick={() => handleDeleteClick(immobile)}>
                     Cancella
                   </Button>
                 </div>

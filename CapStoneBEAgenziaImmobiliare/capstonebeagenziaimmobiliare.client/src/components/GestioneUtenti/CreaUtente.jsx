@@ -1,20 +1,25 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Form, Container, Alert } from "react-bootstrap";
+import { Button, Form, Container, Alert, Modal } from "react-bootstrap";
 import { creaUtente, fetchRuoli } from "../../redux/actions/gestioneUtentiAction";
+import { useNavigate } from "react-router-dom";
 
 function CreaUtente() {
   const [formData, setFormData] = useState({
     nome: "",
     cognome: "",
     telefono: "",
-    fkIdRuolo: "", // Cambiato da 'ruolo' a 'fkIdRuolo'
+    fkIdRuolo: "",
     password: "",
     confermaPassword: "",
     foto: null,
   });
+  const [previewSrc, setPreviewSrc] = useState("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { ruoli } = useSelector((state) => state.gestioneUtenti);
 
   useEffect(() => {
@@ -27,7 +32,19 @@ function CreaUtente() {
   };
 
   const handleFileChange = (e) => {
-    setFormData((prev) => ({ ...prev, foto: e.target.files[0] }));
+    const file = e.target.files[0];
+    setFormData((prev) => ({ ...prev, foto: file }));
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewSrc(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleCheckboxChange = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleSubmit = (e) => {
@@ -38,11 +55,21 @@ function CreaUtente() {
     }
     const data = new FormData();
     Object.keys(formData).forEach((key) => {
-      if (key !== "confermaPassword") {
-        data.append(key, formData[key]);
-      }
+      data.append(key, formData[key]);
     });
-    dispatch(creaUtente(data, setError));
+    dispatch(creaUtente(data, setError))
+      .then(() => {
+        setShowSuccessModal(true);
+      })
+      .catch((error) => {
+        console.log(error);
+        setError("Errore durante la creazione dell'utente");
+      });
+  };
+
+  const handleModalClose = () => {
+    setShowSuccessModal(false);
+    navigate("/GestioneUtenti");
   };
 
   return (
@@ -73,27 +100,49 @@ function CreaUtente() {
         </Form.Group>
         <Form.Group controlId="password">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" name="password" value={formData.password} onChange={handleChange} required />
+          <Form.Control
+            type={showPassword ? "text" : "password"}
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
         </Form.Group>
         <Form.Group controlId="confermaPassword">
           <Form.Label>Conferma Password</Form.Label>
           <Form.Control
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="confermaPassword"
             value={formData.confermaPassword}
             onChange={handleChange}
             required
           />
         </Form.Group>
+        <Form.Group controlId="showPassword">
+          <Form.Check type="checkbox" label="Mostra Password" checked={showPassword} onChange={handleCheckboxChange} />
+        </Form.Group>
         <Form.Group controlId="foto">
           <Form.Label>Foto</Form.Label>
           <Form.Control type="file" onChange={handleFileChange} />
+          {previewSrc && <img src={previewSrc} alt="Preview" style={{ marginTop: "10px", maxHeight: "200px" }} />}
         </Form.Group>
         {error && <Alert variant="danger">{error}</Alert>}
         <Button type="submit" variant="primary">
           Crea Utente
         </Button>
       </Form>
+
+      <Modal show={showSuccessModal} onHide={handleModalClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Utente Creato</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Utente creato con successo!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleModalClose}>
+            OK
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 }

@@ -50,7 +50,7 @@ export function GestioneValutazioni() {
   return (
     <Container className="mt-4">
       <h2>Elenco Richieste Valutazioni</h2>
-      <Table striped bordered hover>
+      <Table className="tableCustomGestioneValutazioni text-center">
         <thead>
           <tr>
             <th>Nome</th>
@@ -72,10 +72,10 @@ export function GestioneValutazioni() {
               <td>{val.indirizzo}</td>
               <td>{val.attivo ? "Si" : "No"}</td>
               <td>
-                <Button variant="info" onClick={() => handleDettagliClick(val.id)}>
+                <Button className="modificaGestioneValutazioniButton me-4" onClick={() => handleDettagliClick(val.id)}>
                   Dettagli
                 </Button>
-                <Button variant="danger" onClick={() => handleCancellaClick(val)}>
+                <Button className="cancellaGestioneValutazioniButton" onClick={() => handleCancellaClick(val)}>
                   Cancella
                 </Button>
               </td>

@@ -85,13 +85,13 @@ function CreaImmobile() {
 
     selectedImages.forEach((image, index) => {
       formData.append("ImmaginiCasa", image);
-      formData.append("ImmagineCopertina", index === coverImageIndex); // Add boolean for each image
+      formData.append("ImmagineCopertina", index === coverImageIndex);
     });
 
     dispatch(createImmobile(formData)).then(() => {
       setSelectedImages([]);
       setPreviews([]);
-      setInputKey(Date.now()); // Reset the input after successful upload
+      setInputKey(Date.now());
     });
   };
 

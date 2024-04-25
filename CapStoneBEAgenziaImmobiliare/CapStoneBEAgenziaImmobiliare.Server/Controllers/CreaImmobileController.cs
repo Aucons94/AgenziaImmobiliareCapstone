@@ -1,16 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.IO;
 using CapStoneBEAgenziaImmobiliare.Server.Models;
-using System;
+
 
 namespace CapStoneBEAgenziaImmobiliare.Server.Controllers;
 
 [ApiController]
+[Authorize(Roles = "Master Broker, Coordinatrice")]
 [Route("[controller]")]
 public class CreaImmobileController : ControllerBase
 {
@@ -47,7 +43,7 @@ public class CreaImmobileController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = "Master Broker, Coordinatrice")]
+
     public async Task<IActionResult> CreateImmobile([FromForm] ImmobileCreateDto immobileCreateDto)
     {
         if (!ModelState.IsValid)

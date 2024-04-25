@@ -1,6 +1,8 @@
-import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
+import { useState } from "react";
+import { Navbar, Nav, NavDropdown, Container, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/actions/loginAction";
+import { useNavigate } from "react-router-dom";
 
 const selectUserData = (state) => state.login.user;
 const selectIsLoggedIn = (state) => !!state.login.user && !!state.login.user.nome;
@@ -9,11 +11,18 @@ const NavigationBar = () => {
   const user = useSelector(selectUserData);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const handleLogout = () => {
-    dispatch(logout());
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    setShowLogoutModal(true);
+    setTimeout(() => {
+      dispatch(logout());
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      setShowLogoutModal(false);
+      navigate("/");
+    }, 2000);
   };
 
   return (
@@ -42,12 +51,16 @@ const NavigationBar = () => {
               </Nav.Link>
               {isLoggedIn && user && (
                 <NavDropdown title="Gestione" id="admin-dropdown" className="nav-link-custom">
-                  <NavDropdown.Item href="/GestioneImmobili" className="navdropdown-item-custom">
-                    Gestisci Immobili
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="/GestioneValutazioni" className="navdropdown-item-custom">
-                    Gestisci Valutazioni
-                  </NavDropdown.Item>
+                  {(user.role === "Master Broker" || user.role === "Coordinatrice") && (
+                    <NavDropdown.Item href="/GestioneImmobili" className="navdropdown-item-custom">
+                      Gestisci Immobili
+                    </NavDropdown.Item>
+                  )}
+                  {user.role === "Listing Agent" && (
+                    <NavDropdown.Item href="/GestioneValutazioni" className="navdropdown-item-custom">
+                      Gestisci Valutazioni
+                    </NavDropdown.Item>
+                  )}
                   {user.role === "Master Broker" && (
                     <NavDropdown.Item href="/GestioneUtenti" className="navdropdown-item-custom">
                       Gestisci Utenti
@@ -68,6 +81,13 @@ const NavigationBar = () => {
           </Navbar.Collapse>
         </Navbar>
       </Container>
+
+      <Modal show={showLogoutModal} onHide={() => setShowLogoutModal(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Logout effettuato con successo</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Ti stiamo reindirizzando alla Homepage</Modal.Body>
+      </Modal>
     </div>
   );
 };

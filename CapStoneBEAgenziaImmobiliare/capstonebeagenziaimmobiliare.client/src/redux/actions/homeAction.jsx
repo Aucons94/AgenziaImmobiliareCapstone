@@ -68,8 +68,3 @@ function handleErrors(response) {
   }
   return response;
 }
-
-export const setTerminiDiRicerca = (tipoProprieta, ricerca, activeTab) => ({
-  type: SET_TERMINI_DI_RICERCA,
-  payload: { tipoProprieta, ricerca, activeTab },
-});

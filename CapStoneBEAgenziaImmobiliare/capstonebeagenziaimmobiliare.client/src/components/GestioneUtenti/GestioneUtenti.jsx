@@ -48,14 +48,17 @@ export default function GestioneUtenti() {
 
   return (
     <Container>
-      <Button variant="primary" onClick={handleCreateNew} className="mb-3">
-        Crea Nuovo Utente
-      </Button>
-      <Table striped bordered hover>
+      <div className="text-center mt-3">
+        <Button onClick={handleCreateNew} className="mb-3 aggiungiNuovoUtenteButton">
+          Aggiungi un nuovo Membro allo Staff
+        </Button>
+      </div>
+      <Table striped bordered hover className="tableCustomGestioneUtenti text-center">
         <thead>
           <tr>
             <th>Nome</th>
             <th>Cognome</th>
+            <th>Ruolo</th>
             <th>Azioni</th>
           </tr>
         </thead>
@@ -64,11 +67,12 @@ export default function GestioneUtenti() {
             <tr key={user.idUser}>
               <td>{user.nome}</td>
               <td>{user.cognome}</td>
+              <td>{user.ruolo}</td>
               <td>
-                <Button variant="info" onClick={() => handleEdit(user.idUser)}>
+                <Button className="modificaGestioneUtentiButton me-4" onClick={() => handleEdit(user.idUser)}>
                   Modifica
                 </Button>
-                <Button variant="danger" onClick={() => handleDelete(user.idUser)}>
+                <Button className="cancellaGestioneUtentiButton" onClick={() => handleDelete(user.idUser)}>
                   Cancella
                 </Button>
               </td>

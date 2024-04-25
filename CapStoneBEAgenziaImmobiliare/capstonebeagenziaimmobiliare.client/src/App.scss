@@ -2,6 +2,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
 $primary-color: #034489;
+$secondary-color: #287233;
+$delete-color: #c70023;
+$anotherdelete-color: #500000;
 $background-color: #a5d9fd;
 $background-color-hover: #007fff;
 $font-color-white: white;
@@ -35,12 +38,25 @@ body {
 }
 
 .nav-link-custom {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   margin-right: 20px;
   color: $primary-color;
+  font-weight: 600;
+  &:hover {
+    color: $background-color-hover;
+  }
+  &:active {
+    color: $background-color-hover;
+  }
+}
+.nav-link {
+  color: $primary-color;
+  &:hover {
+    color: $background-color-hover;
+  }
 }
 .navdropdown-item-custom {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: $primary-color;
 }
 
@@ -171,22 +187,9 @@ body {
 // CAROSELLO
 
 .homeCarouselButton {
-  background-color: $primary-color;
-  color: $font-color-white;
-  &:hover {
-    background-color: $background-color-hover;
-  }
-}
-
-.homeCarouselButton {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.homeCarouselButton .material-symbols-outlined {
-  margin-left: 8px;
-  padding: 0;
 }
 
 // HOME CAROUSEL CARDS
@@ -194,6 +197,20 @@ body {
 .home-carousel-card {
   margin: 0 20px;
   padding: 8px;
+}
+
+.homeCarouselCardButton {
+  background-color: white;
+  color: $primary-color;
+  border: 2px solid $primary-color;
+  border-radius: 0px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+  }
 }
 
 // TEAM CAROUSEL CARDS
@@ -262,6 +279,28 @@ footer {
     color: $font-color-white;
   }
 }
+.custom-inputCercaCasa {
+  background-color: #f8f9fa;
+  border: 1px solid $primary-color;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+
+  &:focus {
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.25);
+    border-color: #80bdff;
+  }
+}
+
+.searchCercaCasaButton {
+  background-color: $primary-color;
+  color: $font-color-white;
+  &:hover {
+    background-color: $background-color-hover;
+  }
+}
+
+.coloreTitoloCercaCasa {
+  color: $primary-color;
+}
 
 //V       V EEEEE  N   N DDDD   I  CCCCC   A   SSSSS   A   PPPPP   A   GGGG  EEEEE
 // V     V  E      NN  N D   D  I  C      A A  S      A A  P   P  A A  G     E
@@ -280,10 +319,153 @@ footer {
   }
 }
 
+.borderVendiCasa {
+  border-bottom: 2px solid $primary-color;
+}
+
+.coloreTitoloVendiCasa {
+  color: $primary-color;
+}
+
 .vendiCasaPageButton {
   background-color: $primary-color;
   color: $font-color-white;
   &:hover {
     background-color: $background-color-hover;
+  }
+}
+
+// GGGG   EEEE  SSSSS TTTTTT  III  OOO  N   N EEEE  III MMMMM MMMMM  OOO  BBBB  III LLL III
+// G      E     S       TTT   III O   O NN  N E     III MM  M MM  M O   O B   B III LLL III
+// G   GG EEEE   SSS    TTT   III O   O N N N EEEE  III MM  M MM  M O   O BBBB  III LLL III
+// G    G E         S   TTT   III O   O N  NN E     III MM  M MM  M O   O B   B III LLL III
+//  GGGG  EEEE  SSSS    TTT   III  OOO  N   N EEEE  III MM  M MM  M  OOO  BBBB  III LLL III
+
+.dettagliGestioneImmobiliButton {
+  background-color: $primary-color;
+  color: $font-color-white;
+  &:hover {
+    background-color: $background-color-hover;
+  }
+}
+.modificaGestioneImmobiliButton {
+  background-color: $primary-color;
+  color: $font-color-white;
+  &:hover {
+    background-color: $background-color-hover;
+  }
+}
+.cancellaGestioneImmobiliButton {
+  background-color: $delete-color;
+  color: $font-color-white;
+  &:hover {
+    background-color: $anotherdelete-color;
+  }
+}
+.aggiungiNuovoImmobileButton {
+  background-color: white;
+  color: $primary-color;
+  border: 2px solid $primary-color;
+  border-radius: 0px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+  }
+}
+
+// GGGGG   EEEEEEE SSSSSSS  TTTTTTTT IIII  OOOOO   NNN   NN EEEEEEE U   U TTTTTTTT EEEEEEE N   N TTTTTTTT IIII
+// GG      EE      SS          TT     II  OO   OO  NN N  NN EE      U   U    TT    EE      NN  N    TT     II
+// GG  GGG EEEE    SSSSSSS     TT     II  OO   OO  NN  N NN EEEE    U   U    TT    EEEE    N N N    TT     II
+// GG   GG EE            SS    TT     II  OO   OO  NN   NNN EE      U   U    TT    EE      N  NN    TT     II
+//  GGGGG  EEEEEEE  SSSSSSS    TT    IIII  OOOOO   NN    NN EEEEEEE  UUU     TT    EEEEEEE N   N    TT    IIII
+
+.aggiungiNuovoUtenteButton {
+  background-color: white;
+  color: $primary-color;
+  border: 2px solid $primary-color;
+  border-radius: 0px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+  }
+}
+
+.tableCustomGestioneUtenti {
+  thead th {
+    background-color: $primary-color;
+    color: white;
+    border: 2px solid $primary-color;
+  }
+
+  tbody {
+    border: 1px solid $primary-color;
+    td {
+      background-color: #ffffff;
+      color: #333;
+    }
+  }
+}
+
+.modificaGestioneUtentiButton {
+  background-color: $primary-color;
+  color: $font-color-white;
+  padding-inline: 40px;
+  &:hover {
+    background-color: $background-color-hover;
+  }
+}
+
+.cancellaGestioneUtentiButton {
+  background-color: $delete-color;
+  color: $font-color-white;
+  padding-inline: 40px;
+  &:hover {
+    background-color: $anotherdelete-color;
+  }
+}
+
+// GGGGG   EEEEEEE SSSSSSS TTTTTTTT IIII  OOOOO   NNN   NN EEEEEEE V   V AAAAA  L     U   U TTTTTTTT AAAAA  ZZZZZZZ IIII  OOOOO  N   N IIII
+// GG      EE      SS         TT     II  OO   OO  NN N  NN EE      V   V A   A  L     U   U    TT    A   A        Z  II  OO   OO NN  N  II
+// GG  GGG EEEE    SSSSSSS    TT     II  OO   OO  NN  N NN EEEE     V V  AAAAA  L     U   U    TT    AAAAA      Z    II  OO   OO N N N  II
+// GG   GG EE           SS    TT     II  OO   OO  NN   NNN EE        V   A   A  L     U   U    TT    A   A    Z      II  OO   OO N  NN  II
+//  GGGGG  EEEEEEE SSSSSSS    TT    IIII  OOOOO   NN    NN EEEEEEE   V   A   A  LLLLL  UUU     TT    A   A  ZZZZZZZ IIII  OOOOO  N   N IIII
+
+.tableCustomGestioneValutazioni {
+  thead th {
+    background-color: $primary-color;
+    color: white;
+    border: 2px solid $primary-color;
+  }
+
+  tbody {
+    td {
+      border: 1px solid $primary-color;
+      background-color: #ffffff;
+      color: #333;
+    }
+  }
+}
+
+.modificaGestioneValutazioniButton {
+  background-color: $primary-color;
+  color: $font-color-white;
+  padding-inline: 40px;
+  &:hover {
+    background-color: $background-color-hover;
+  }
+}
+
+.cancellaGestioneValutazioniButton {
+  background-color: $delete-color;
+  color: $font-color-white;
+  padding-inline: 40px;
+  &:hover {
+    background-color: $anotherdelete-color;
   }
 }

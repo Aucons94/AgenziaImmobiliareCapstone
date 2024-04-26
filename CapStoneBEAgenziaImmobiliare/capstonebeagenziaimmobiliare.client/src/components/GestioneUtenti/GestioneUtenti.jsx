@@ -90,7 +90,7 @@ export default function GestioneUtenti() {
           <Button variant="secondary" onClick={handleCloseModal}>
             Annulla
           </Button>
-          <Button variant="danger" onClick={handleConfirmDelete}>
+          <Button className="bottoneCancellaModale" onClick={handleConfirmDelete}>
             Cancella
           </Button>
         </Modal.Footer>

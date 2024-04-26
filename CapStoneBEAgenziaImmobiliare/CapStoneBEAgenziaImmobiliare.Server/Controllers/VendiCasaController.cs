@@ -32,7 +32,7 @@ namespace CapStoneBEAgenziaImmobiliare.Server.Controllers
             public decimal Metratura { get; set; }
             public int? Box { get; set; }
             public int? PostiAuto { get; set; }
-            public string CaratteristicheSpeciali { get; set; }
+            public string? CaratteristicheSpeciali { get; set; }
         }
 
         [HttpPost]

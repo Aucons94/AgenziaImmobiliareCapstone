@@ -46,9 +46,6 @@ const NavigationBar = () => {
               <Nav.Link href="/VendiCasa" className="nav-link-custom">
                 Vendi Casa
               </Nav.Link>
-              <Nav.Link href="#contatti" className="nav-link-custom">
-                Contatti
-              </Nav.Link>
               {isLoggedIn && user && (
                 <NavDropdown title="Gestione" id="admin-dropdown" className="nav-link-custom">
                   {(user.role === "Master Broker" || user.role === "Coordinatrice") && (
@@ -56,7 +53,7 @@ const NavigationBar = () => {
                       Gestisci Immobili
                     </NavDropdown.Item>
                   )}
-                  {user.role === "Listing Agent" && (
+                  {(user.role === "Master Broker" || user.role === "Listing Agent") && (
                     <NavDropdown.Item href="/GestioneValutazioni" className="navdropdown-item-custom">
                       Gestisci Valutazioni
                     </NavDropdown.Item>

@@ -8,13 +8,13 @@ import {
   setImageAsCover,
   removeImage,
 } from "../../redux/actions/modificaImmobileAction";
-import { Form, Button, Container, Row, Col, Card, Alert, Spinner } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { Form, Button, Container, Row, Col, Card, Alert, Spinner, Modal } from "react-bootstrap";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ModificaImmobile = () => {
   const { idImmobile } = useParams();
   const dispatch = useDispatch();
-  const { immobile, loading, error, success } = useSelector((state) => state.modificaDettagli);
+  const { immobile, loading, error } = useSelector((state) => state.modificaDettagli);
   const { staffMembers } = useSelector((state) => state.modificaStaff);
   const user = JSON.parse(localStorage.getItem("user"));
   const isMasterBroker = user && user.role === "Master Broker";
@@ -22,6 +22,9 @@ const ModificaImmobile = () => {
   const [formData, setFormData] = useState({});
   const [selectedFile, setSelectedFile] = useState(null);
   const fileInputRef = useRef();
+  const [fileName, setFileName] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getImmobileDetails(idImmobile));
@@ -29,6 +32,16 @@ const ModificaImmobile = () => {
       dispatch(fetchStaffMembers());
     }
   }, [dispatch, idImmobile, isMasterBroker]);
+
+  useEffect(() => {
+    let timer;
+    if (showModal) {
+      timer = setTimeout(() => {
+        navigate("/GestioneImmobili");
+      }, 2000);
+    }
+    return () => clearTimeout(timer);
+  }, [showModal, navigate]);
 
   useEffect(() => {
     if (immobile) {
@@ -58,7 +71,13 @@ const ModificaImmobile = () => {
   }, [immobile]);
 
   const handleFileSelect = (event) => {
-    setSelectedFile(event.target.files[0]);
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+      setFileName(file.name);
+    } else {
+      setFileName("");
+    }
   };
 
   const handleImageUpload = async () => {
@@ -68,12 +87,13 @@ const ModificaImmobile = () => {
         if (result.success) {
           setImmagini((prevImmagini) => [...prevImmagini, result.data]);
           setSelectedFile(null);
+          setFileName("");
           if (fileInputRef.current) {
             fileInputRef.current.value = "";
           }
           alert("Immagine caricata con successo!");
         } else {
-          alert(result.message || "Failed to upload image");
+          alert(result.message || "Caricamento immagine fallito.");
         }
       } catch (error) {
         console.error("Errore durante il caricamento dell'immagine:", error);
@@ -110,18 +130,23 @@ const ModificaImmobile = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const submissionData = {
       ...formData,
       box: formData.box === "0" ? null : parseInt(formData.box),
       postiAuto: formData.postiAuto === "0" ? null : parseInt(formData.postiAuto),
       locazione: formData.locazione === "true",
-      ...(isMasterBroker && { FkIdUser: formData.FkIdUser }),
+      ...(isMasterBroker && { fkIdUser: formData.fkIdUser }),
     };
 
-    console.log("Submitting data:", submissionData);
-    dispatch(editImmobile(idImmobile, submissionData));
+    try {
+      await dispatch(editImmobile(idImmobile, submissionData));
+      setShowModal(true);
+    } catch (error) {
+      alert("Errore durante il salvataggio delle modifiche.");
+      console.error("Errore durante il salvataggio:", error);
+    }
   };
 
   if (loading) return <Spinner animation="border" />;
@@ -130,10 +155,9 @@ const ModificaImmobile = () => {
   return (
     <Container className="my-4">
       <Row className="justify-content-md-center">
-        <Col md={8}>
-          <h2>Modifica Immobile</h2>
-          {success && <Alert variant="success">Immobile modificato con successo!</Alert>}
-          <Form onSubmit={handleSubmit}>
+        <Col md={12} lg={5} xl={6}>
+          <h2 className="titoloModificaImmobile">Modifica Immobile</h2>
+          <Form onSubmit={handleSubmit} className="formModificaImmobile">
             <Form.Group controlId="formTitolo">
               <Form.Label>Titolo</Form.Label>
               <Form.Control type="text" name="titolo" value={formData.titolo} onChange={handleChange} />
@@ -251,28 +275,6 @@ const ModificaImmobile = () => {
               />
             </Form.Group>
 
-            <Form.Group controlId="formVetrina">
-              <Form.Label>Vetrina</Form.Label>
-              <Form.Check
-                type="checkbox"
-                label="Vetrina"
-                name="vetrina"
-                checked={formData.vetrina}
-                onChange={handleChange}
-              />
-            </Form.Group>
-
-            <Form.Group controlId="formPubblicata">
-              <Form.Label>Pubblicata</Form.Label>
-              <Form.Check
-                type="checkbox"
-                label="Pubblicata"
-                name="pubblicata"
-                checked={formData.pubblicata}
-                onChange={handleChange}
-              />
-            </Form.Group>
-
             <Form.Group controlId="formLocazione">
               <Form.Label>Locazione</Form.Label>
               <Form.Control as="select" name="locazione" value={formData.locazione} onChange={handleChange}>
@@ -294,38 +296,86 @@ const ModificaImmobile = () => {
                 </Form.Control>
               </Form.Group>
             )}
+            <Form.Group controlId="formVetrina" className="mt-2">
+              <Form.Check
+                type="checkbox"
+                label="Vetrina"
+                name="vetrina"
+                checked={formData.vetrina}
+                onChange={handleChange}
+              />
+            </Form.Group>
 
-            <Button variant="primary" type="submit">
-              Salva Modifiche
-            </Button>
+            <Form.Group controlId="formPubblicata">
+              <Form.Check
+                type="checkbox"
+                label="Pubblicata"
+                name="pubblicata"
+                checked={formData.pubblicata}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <div className="text-center my-3">
+              <Button type="submit" className="bottoneSalvaModificaImmobile">
+                Salva Modifiche
+              </Button>
+            </div>
           </Form>
         </Col>
-      </Row>
-      <Row>
-        {immagini.map((img, index) => (
-          <Col md={4} key={img.idImmagine}>
-            <Card>
-              <Card.Img variant="top" src={img.immagine} style={{ width: "100%", height: "auto" }} />
-              <Card.Body>
-                <Card.Title>Immagine {index + 1}</Card.Title>
-                <Button variant="success" onClick={() => handleSetCover(img.idImmagine)}>
-                  {img.immagineCopertina ? "Immagine Copertina" : "Imposta come Copertina"}
-                </Button>
-                <Button variant="danger" onClick={() => handleRemoveImage(img.idImmagine)} className="ml-2">
-                  Rimuovi
-                </Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-      <Row className="justify-content-md-center">
-        <Col md={8}>
-          <input type="file" onChange={handleFileSelect} ref={fileInputRef} />
-          <Button onClick={handleImageUpload} disabled={!selectedFile}>
-            Carica Immagine
-          </Button>
+        <Col md={12} lg={7} xl={6}>
+          <div className="mb-3">
+            <label htmlFor="file-upload" className="customFileModificaImmobile">
+              Scegli File
+            </label>
+            <input
+              id="file-upload"
+              type="file"
+              className="scegliFileModificaImmobile"
+              onChange={handleFileSelect}
+              ref={fileInputRef}
+            />
+
+            <Button onClick={handleImageUpload} disabled={!selectedFile} className="bottoneCaricaModificaImmobile ms-3">
+              Carica Immagine
+            </Button>
+          </div>
+          {fileName && <Alert variant="success">File selezionato: {fileName}</Alert>}
+          <Row>
+            {immagini.map((img) => (
+              <Col md={6} key={img.idImmagine}>
+                <Card>
+                  <Card.Img variant="top" src={img.immagine} style={{ width: "100%", height: "auto" }} />
+                  <Card.Body className="d-flex align-items-center justify-content-center">
+                    {img.immagineCopertina ? (
+                      <span className="copertinaImpostata">Copertina</span>
+                    ) : (
+                      <Button
+                        className="bottoneImpostaCopertinaModifica"
+                        onClick={() => handleSetCover(img.idImmagine)}
+                      >
+                        Imposta Copertina
+                      </Button>
+                    )}
+                    <Button
+                      onClick={() => handleRemoveImage(img.idImmagine)}
+                      className="ms-3 bottoneRimuoviModificaImmobili"
+                    >
+                      Rimuovi
+                    </Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
         </Col>
+        <Modal show={showModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Immobile Modificato</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            Immobile modificato con successo! <br /> Stai per essere reindirizzato alla Gestione Immobili
+          </Modal.Body>
+        </Modal>
       </Row>
     </Container>
   );

@@ -66,14 +66,14 @@ const GestioneImmobili = () => {
           <Modal.Title>Conferma Cancellazione</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Sei sicuro di voler cancellare questo immobile ?<strong>{immobileToDelete && immobileToDelete.titolo}</strong>
-          ?
+          Sei sicuro di voler cancellare questo l&apos;immobile{" "}
+          <strong>{immobileToDelete && immobileToDelete.titolo}</strong> ?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCancelDelete}>
             Annulla
           </Button>
-          <Button variant="danger" onClick={handleConfirmDelete}>
+          <Button className="bottoneCancellaModale" onClick={handleConfirmDelete}>
             Cancella
           </Button>
         </Modal.Footer>
@@ -82,12 +82,14 @@ const GestioneImmobili = () => {
       {immobili.map((immobile) => (
         <Card key={immobile.idImmobile} className="mb-3">
           <Row>
-            <Col md={6} lg={4}>
+            <Col md={12} lg={6} xl={5}>
               <Image src={immobile.immagineCopertina || "placeholder-image.jpg"} alt={immobile.titolo} fluid />
             </Col>
-            <Col md={6} lg={4}>
-              <Card.Body>
-                <Card.Title>{immobile.titolo}</Card.Title>
+            <Col md={12} lg={6} xl={4}>
+              <Card.Body className="pb-0">
+                <Card.Title as="h4" className="titoloGestioneImmobili">
+                  {immobile.titolo}
+                </Card.Title>
                 <ListGroup variant="flush">
                   <ListGroup.Item>
                     <strong>Indirizzo:</strong> {immobile.indirizzo}
@@ -104,26 +106,27 @@ const GestioneImmobili = () => {
                   <ListGroup.Item>
                     <Row>
                       <Col>
-                        <strong>Camere da Letto:</strong> {immobile.camereDaLetto}
+                        <strong>Camere:</strong> {immobile.camereDaLetto}
                       </Col>
                       <Col>
                         <strong>Bagni:</strong> {immobile.bagni}
                       </Col>
-                      <Col>
-                        <strong>Sala:</strong> {immobile.sala}
-                      </Col>
                     </Row>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    <strong>Altri Vani:</strong> {immobile.altriVani}
-                  </ListGroup.Item>
-                  <ListGroup.Item>
-                    <strong>Metratura:</strong> {immobile.metratura} m²
+                    <Row>
+                      <Col>
+                        <strong>Altri Vani:</strong> {immobile.altriVani}
+                      </Col>
+                      <Col>
+                        <strong>M²</strong> {immobile.metratura}
+                      </Col>
+                    </Row>
                   </ListGroup.Item>
                 </ListGroup>
               </Card.Body>
             </Col>
-            <Col md={12} lg={4}>
+            <Col md={12} lg={12} xl={3}>
               <Card.Body>
                 <div className="d-flex flex-column">
                   <Button

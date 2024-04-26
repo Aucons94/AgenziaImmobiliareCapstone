@@ -21,13 +21,11 @@ const CercaCasaCard = ({ immobile }) => {
           {immobile.tipoProprieta || "Tipo non disponibile"}
         </Badge>
         <Card.Text>
-          <strong>{immobile.prezzo ? `€ ${immobile.prezzo}` : "Prezzo non disponibile"}</strong>
-          <div>
-            Camere: {immobile.camereDaLetto || "N/D"} Bagni: {immobile.bagni || "N/D"} m²: {immobile.metratura || "N/D"}
-          </div>
+          <strong>{immobile.prezzo ? `€ ${immobile.prezzo}` : "Prezzo non disponibile"}</strong> <br />
+          Camere: {immobile.camereDaLetto || "N/D"} Bagni: {immobile.bagni || "N/D"} m²: {immobile.metratura || "N/D"}
         </Card.Text>
         <Link to={`/Dettaglio/${immobile.idImmobile}`}>
-          <Button variant="primary">Dettagli</Button>
+          <Button className="bottoneDettagliCercaCasaCard">Dettagli</Button>
         </Link>
       </Card.Body>
     </Card>

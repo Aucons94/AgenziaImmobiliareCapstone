@@ -60,7 +60,6 @@ namespace CapStoneBEAgenziaImmobiliare.Server.Controllers
                     Indirizzo = immobile.Indirizzo,
                     CamereDaLetto = immobile.CamereDaLetto,
                     Bagni = immobile.Bagni,
-                    Sala = immobile.Sala,
                     Metratura = immobile.Metratura,
                     AltriVani = immobile.AltriVani,
                     ImmagineCopertina = _context.ImmaginiCase
@@ -131,7 +130,7 @@ namespace CapStoneBEAgenziaImmobiliare.Server.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Master Broker, Coordinatrice")]
-        public async Task<IActionResult> ModificaImmobile(int id, [FromForm] ImmobileDto immobileDto)
+        public async Task<IActionResult> ModificaImmobile(int id, [FromBody] ImmobileDto immobileDto)
         {
             if (!ModelState.IsValid)
             {
@@ -172,7 +171,8 @@ namespace CapStoneBEAgenziaImmobiliare.Server.Controllers
             {
                 _context.Update(immobileEsistente);
                 await _context.SaveChangesAsync();
-                return Ok("Immobile modificato con successo.");
+                return Ok(new { Message = "Immobile modificato con successo." });
+
             }
             catch (Exception ex)
             {

@@ -49,14 +49,13 @@ export function GestioneValutazioni() {
 
   return (
     <Container className="mt-4">
-      <h2>Elenco Richieste Valutazioni</h2>
+      <h2 className="titoloGestioneValutazioni mb-2">Elenco Richieste Valutazioni</h2>
       <Table className="tableCustomGestioneValutazioni text-center">
         <thead>
           <tr>
             <th>Nome</th>
             <th>Cognome</th>
             <th>Cellulare</th>
-            <th>Metratura</th>
             <th>Indirizzo</th>
             <th>Attivo</th>
             <th>Azioni</th>
@@ -68,7 +67,6 @@ export function GestioneValutazioni() {
               <td>{val.nome}</td>
               <td>{val.cognome}</td>
               <td>{val.cellulare}</td>
-              <td>{val.metratura} m²</td>
               <td>{val.indirizzo}</td>
               <td>{val.attivo ? "Si" : "No"}</td>
               <td>
@@ -93,7 +91,7 @@ export function GestioneValutazioni() {
           <Button variant="secondary" onClick={handleCloseModal}>
             Annulla
           </Button>
-          <Button variant="danger" onClick={handleConfermaCancellazione}>
+          <Button className="bottoneCancellaModale" onClick={handleConfermaCancellazione}>
             Cancella
           </Button>
         </Modal.Footer>

@@ -55,7 +55,6 @@ export const fetchLogin = (loginObj) => async (dispatch) => {
       dispatch(loginFailure(err));
     } else {
       const loggedProfileData = await response.json();
-      console.info("Accesso effettuato", loggedProfileData);
       dispatch(loginSuccess(loggedProfileData));
     }
   } catch (error) {

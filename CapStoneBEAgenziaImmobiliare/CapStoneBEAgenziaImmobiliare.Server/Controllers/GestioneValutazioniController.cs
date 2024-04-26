@@ -23,7 +23,6 @@ public class GestioneValutazioniController : ControllerBase
         public string Nome { get; set; }
         public string Cognome { get; set; }
         public string Cellulare { get; set; }
-        public decimal Metratura { get; set; }
         public string Indirizzo { get; set; }
         public bool Attivo { get; set; }
     }
@@ -40,7 +39,6 @@ public class GestioneValutazioniController : ControllerBase
                 Nome = r.Cliente.Nome,
                 Cognome = r.Cliente.Cognome,
                 Cellulare = r.Cliente.Telefono,
-                Metratura = r.Metratura,
                 Indirizzo = r.Indirizzo,
                 Attivo = r.Attivo
             })

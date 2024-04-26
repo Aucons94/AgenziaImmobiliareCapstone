@@ -163,6 +163,7 @@ export default function ValutazioneForm() {
                 className="custom-inputVendiCasa"
                 value={formState.cucina}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
           </Col>
@@ -175,6 +176,7 @@ export default function ValutazioneForm() {
                 className="custom-inputVendiCasa"
                 value={formState.sala}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
           </Col>
@@ -187,6 +189,7 @@ export default function ValutazioneForm() {
                 className="custom-inputVendiCasa"
                 value={formState.altriVani}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
           </Col>
@@ -212,6 +215,7 @@ export default function ValutazioneForm() {
                 className="custom-inputVendiCasa"
                 value={formState.box}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
           </Col>
@@ -224,6 +228,7 @@ export default function ValutazioneForm() {
                 className="custom-inputVendiCasa"
                 value={formState.postiAuto}
                 onChange={handleChange}
+                required
               />
             </Form.Group>
           </Col>
@@ -240,9 +245,11 @@ export default function ValutazioneForm() {
             </Form.Group>
           </Col>
           <Col md={12}>
-            <Button type="submit" className="mb-5 vendiCasaPageButton">
-              Invia Richiesta
-            </Button>
+            <div className="mb-5 text-center">
+              <Button type="submit" className="vendiCasaPageButton">
+                Invia Richiesta
+              </Button>
+            </div>
           </Col>
         </Row>
       </Form>

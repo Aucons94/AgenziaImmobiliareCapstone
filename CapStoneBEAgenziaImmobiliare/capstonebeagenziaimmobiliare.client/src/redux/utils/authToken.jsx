@@ -9,7 +9,6 @@ export function isTokenExpired(token) {
 export const verificaToken = () => async (dispatch) => {
   const token = localStorage.getItem("token");
   if (!token || isTokenExpired(token)) {
-    console.log("Token is expired or invalid, dispatching logout.");
     dispatch(logout());
   }
 };

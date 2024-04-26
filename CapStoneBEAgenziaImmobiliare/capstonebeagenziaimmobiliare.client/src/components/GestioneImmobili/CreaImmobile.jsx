@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createImmobile, fetchStaffMembersCreate } from "../../redux/actions/creaImmobileAction";
-import { Form, Button, Col, Row, Container, Alert } from "react-bootstrap";
+import { Form, Button, Col, Row, Container, Modal, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function CreaImmobile() {
   const dispatch = useDispatch();
@@ -10,9 +11,12 @@ function CreaImmobile() {
   const isMasterBroker = user && user.role === "Master Broker";
   const [selectedImages, setSelectedImages] = useState([]);
   const [previews, setPreviews] = useState([]);
-  const [error, setError] = useState("");
+  const [missingFields, setMissingFields] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const [inputKey, setInputKey] = useState(Date.now());
   const [coverImageIndex, setCoverImageIndex] = useState(null);
+  const fileInputRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isMasterBroker) {
@@ -20,9 +24,16 @@ function CreaImmobile() {
     }
   }, [dispatch, isMasterBroker]);
 
+  useEffect(() => {
+    if (showModal) {
+      const timer = setTimeout(() => setShowModal(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showModal]);
+
   const [immobile, setImmobile] = useState({
     titolo: "",
-    descrizione: "Nessuna descrizione disponibile",
+    descrizione: "",
     prezzo: 0,
     tipoProprietà: "Residenziale",
     comune: "",
@@ -42,7 +53,35 @@ function CreaImmobile() {
     FkIdUser: "",
   });
 
-  const requiredFields = ["titolo", "comune", "indirizzo"];
+  const fieldsLabels = {
+    titolo: "Titolo",
+    descrizione: "Descrizione",
+    prezzo: "Prezzo",
+    tipoProprietà: "Tipo Proprietà",
+    comune: "Comune",
+    indirizzo: "Indirizzo",
+    camereDaLetto: "Camere da Letto",
+    bagni: "Bagni",
+    cucina: "Cucina",
+    sala: "Sala",
+    altriVani: "Altri Vani",
+    metratura: "Metratura",
+  };
+
+  const requiredFields = [
+    "titolo",
+    "descrizione",
+    "prezzo",
+    "tipoProprietà",
+    "comune",
+    "indirizzo",
+    "camereDaLetto",
+    "bagni",
+    "cucina",
+    "sala",
+    "altriVani",
+    "metratura",
+  ];
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -63,6 +102,11 @@ function CreaImmobile() {
     }
     e.target.value = null;
   };
+
+  const handleClickFileInput = () => {
+    fileInputRef.current.click();
+  };
+
   const handleRemoveImage = (index) => {
     const newImages = [...selectedImages];
     newImages.splice(index, 1);
@@ -92,25 +136,33 @@ function CreaImmobile() {
       setSelectedImages([]);
       setPreviews([]);
       setInputKey(Date.now());
+      navigate("/GestioneImmobili");
     });
   };
 
   const validateForm = () => {
-    const missingFields = requiredFields.filter((field) => !immobile[field]);
-    if (missingFields.length > 0) {
-      setError(`Compila i campi obbligatori: ${missingFields.join(", ")}`);
+    const missing = requiredFields.filter((field) => !immobile[field]);
+    if (missing.length > 0) {
+      setMissingFields(missing.map((field) => fieldsLabels[field]));
+      setShowModal(true);
       return false;
     }
-    setError("");
+
+    if (selectedImages.length === 0) {
+      setMissingFields(["Almeno un'immagine"]);
+      setShowModal(true);
+      return false;
+    }
+
     return true;
   };
 
   return (
     <Container className="my-4">
       <Row className="justify-content-md-center">
-        <Col md={8}>
-          <h2>Aggiungi un nuovo Immobile</h2>
-          <Form onSubmit={handleSubmit}>
+        <Col md={12} lg={5} xl={6}>
+          <h2 className="titoloCreaImmobile">Aggiungi un nuovo Immobile</h2>
+          <Form onSubmit={handleSubmit} className="formAggiungiImmobile">
             <Form.Group controlId="formTitolo">
               <Form.Label>Titolo</Form.Label>
               <Form.Control type="text" name="titolo" value={immobile.titolo} onChange={handleChange} />
@@ -218,28 +270,6 @@ function CreaImmobile() {
               />
             </Form.Group>
 
-            <Form.Group controlId="formVetrina">
-              <Form.Label>Vetrina</Form.Label>
-              <Form.Check
-                type="checkbox"
-                label="Vetrina"
-                name="vetrina"
-                checked={immobile.vetrina}
-                onChange={handleChange}
-              />
-            </Form.Group>
-
-            <Form.Group controlId="formPubblicata">
-              <Form.Label>Pubblicata</Form.Label>
-              <Form.Check
-                type="checkbox"
-                label="Pubblicata"
-                name="pubblicata"
-                checked={immobile.pubblicata}
-                onChange={handleChange}
-              />
-            </Form.Group>
-
             <Form.Group controlId="formLocazione">
               <Form.Label>Locazione</Form.Label>
               <Form.Control as="select" name="locazione" value={immobile.locazione} onChange={handleChange}>
@@ -260,35 +290,81 @@ function CreaImmobile() {
                 </Form.Control>
               </Form.Group>
             )}
-
-            <Form.Group controlId="formImmagini">
-              <Form.Label>Immagini</Form.Label>
-              <Form.Control type="file" multiple name="immaginiCasa" onChange={handleImageChange} key={inputKey} />
-              <div className="image-previews">
-                {previews.map((preview, index) => (
-                  <div key={index} className="image-preview">
-                    <img src={preview} alt="Anteprima" />
-                    <Button variant="danger" onClick={() => handleRemoveImage(index)}>
-                      Rimuovi
-                    </Button>
-                    <Form.Check
-                      type="radio"
-                      label="Imposta come Copertina"
-                      name="coverImage"
-                      checked={index === coverImageIndex}
-                      onChange={() => setCoverImageIndex(index)}
-                    />
-                  </div>
-                ))}
-              </div>
+            <Form.Group controlId="formVetrina" className="mt-2">
+              <Form.Check
+                type="checkbox"
+                label="Vetrina"
+                name="vetrina"
+                checked={immobile.vetrina}
+                onChange={handleChange}
+              />
             </Form.Group>
-            {error && <Alert variant="danger">{error}</Alert>}
-            <Button variant="primary" type="submit">
-              Inserisci Immobile
-            </Button>
+
+            <Form.Group controlId="formPubblicata">
+              <Form.Check
+                type="checkbox"
+                label="Pubblicata"
+                name="pubblicata"
+                checked={immobile.pubblicata}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <div className="text-center my-3">
+              <Button className="bottoneInserisciImmobile" type="submit">
+                Inserisci Immobile
+              </Button>
+            </div>
           </Form>
         </Col>
+        <Col md={12} lg={7} xl={6}>
+          <div className="mt-2">
+            <h4 className="immaginiCreaImmobile mb-2">Immagini</h4>
+            <Button className="customFileCreaImmobile mb-3" onClick={handleClickFileInput}>
+              Scegli File
+            </Button>
+            <input
+              type="file"
+              multiple
+              name="immaginiCasa"
+              onChange={handleImageChange}
+              key={inputKey}
+              ref={fileInputRef}
+              style={{ display: "none" }} // Nasconde l'input file
+            />
+            <Row>
+              {previews.map((preview, index) => (
+                <Col md={6} key={index}>
+                  <Card>
+                    <Card.Img variant="top" src={preview} style={{ width: "100%", height: "auto" }} />
+                    <Card.Body>
+                      <Form.Check
+                        type="radio"
+                        label="Imposta come Copertina"
+                        name="coverImage"
+                        checked={index === coverImageIndex}
+                        onChange={() => setCoverImageIndex(index)}
+                      />
+                      <div className="mb-3 text-center">
+                        <Button className="bottoneRimuoviCreaImmobile" onClick={() => handleRemoveImage(index)}>
+                          Rimuovi
+                        </Button>
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </div>
+        </Col>
       </Row>
+      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Campi mancanti</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {missingFields.length > 0 && <p>Compila i seguenti campi: {missingFields.join(", ")}</p>}
+        </Modal.Body>
+      </Modal>
     </Container>
   );
 }

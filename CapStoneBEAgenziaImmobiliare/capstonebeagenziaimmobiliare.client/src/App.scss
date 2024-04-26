@@ -3,8 +3,8 @@
 
 $primary-color: #034489;
 $secondary-color: #287233;
-$delete-color: #c70023;
-$anotherdelete-color: #500000;
+$delete-color: #9ca3a9;
+$anotherdelete-color: #a80101;
 $background-color: #a5d9fd;
 $background-color-hover: #007fff;
 $font-color-white: white;
@@ -19,11 +19,11 @@ body {
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 }
-// NNN    NNN  AAAAA   VV     VV  BBBBB    AAAAA   RRRRR
-// NNNN   NNN AA   AA  VV     VV  BB   B  AA   AA  RR  RR
-// NNNN   NNN AAAAAAA  VV     VV  BBBBBB  AAAAAAA  RRRRR
-// NNN N  NNN AA   AA   VV   VV   BB   BB AA   AA  RR  RR
-// NNN  N NNN AA   AA    VVVVV    BBBBBB  AA   AA  RR   RR
+// NN    NN  AAAAA   VV     VV  BBBBB    AAAAA   RRRRR
+// NNN   NN AA   AA  VV     VV  BB   B  AA   AA  RR  RR
+// NNN   NN AAAAAAA  VV     VV  BBBBBB  AAAAAAA  RRRRR
+// NN N  NN AA   AA   VV   VV   BB   BB AA   AA  RR  RR
+// NN  N NN AA   AA    VVVVV    BBBBBB  AA   AA  RR   RR
 
 .divNav {
   background-color: white;
@@ -161,7 +161,6 @@ body {
   padding: 0.75rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-
   &:hover {
     background-color: $background-color-hover;
   }
@@ -291,10 +290,29 @@ footer {
 }
 
 .searchCercaCasaButton {
-  background-color: $primary-color;
-  color: $font-color-white;
+  background-color: white;
+  color: $primary-color;
+  border: 2px solid $primary-color;
+  border-radius: 0px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: all 0.5s ease-in-out;
   &:hover {
-    background-color: $background-color-hover;
+    background-color: $primary-color;
+    color: white;
+  }
+}
+.bottoneDettagliCercaCasaCard {
+  background-color: white;
+  color: $primary-color;
+  border: 2px solid $primary-color;
+  border-radius: 0px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    background-color: $primary-color;
+    color: white;
   }
 }
 
@@ -328,10 +346,16 @@ footer {
 }
 
 .vendiCasaPageButton {
-  background-color: $primary-color;
-  color: $font-color-white;
+  background-color: white;
+  color: $primary-color;
+  border: 2px solid $primary-color;
+  border-radius: 0px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: all 0.5s ease-in-out;
   &:hover {
-    background-color: $background-color-hover;
+    background-color: $primary-color;
+    color: white;
   }
 }
 
@@ -358,6 +382,7 @@ footer {
 .cancellaGestioneImmobiliButton {
   background-color: $delete-color;
   color: $font-color-white;
+  border: none;
   &:hover {
     background-color: $anotherdelete-color;
   }
@@ -373,6 +398,202 @@ footer {
   &:hover {
     background-color: $primary-color;
     color: white;
+  }
+}
+
+.titoloGestioneImmobili {
+  color: $primary-color;
+  font-weight: 700;
+}
+
+.tornaGestioneImmobiliButton {
+  background-color: $primary-color;
+  color: $font-color-white;
+  padding-inline: 60px;
+  &:hover {
+    background-color: $background-color-hover;
+  }
+}
+
+// DDDD   EEEEEEE TTTTTTTT TTTTTTTT  AAAAA   GGGGG  L     IIII  PPPPPP  AAAAA  GGGGG   EEEEEEE
+// D   D  EE         TT       TT     A   A  GG      L      II   PP   PP A   A  GG      EE
+// D   D  EEEE       TT       TT     AAAAA  GG  GGG L      II   PPPPPP  AAAAA  GG  GGG EEEE
+// D   D  EE         TT       TT     A   A  GG   GG L      II   PP      A   A  GG   GG EE
+// DDDD   EEEEEEE    TT       TT     A   A   GGGGG  LLLLL IIII  PP      A   A   GGGGG  EEEEEEE
+
+.dettagliPageCarousel {
+  border: 1px solid $primary-color;
+}
+
+.descrizioneDettagliPage {
+  border: 1px solid $primary-color;
+  border-radius: 50px;
+}
+
+.cardDettagliPage {
+  border: 1px solid $primary-color;
+  border-radius: 50px;
+  div {
+    border-top: 1px solid $primary-color;
+    div {
+      border-top: 1px solid $primary-color;
+      border-bottom: 1px solid $primary-color;
+    }
+  }
+}
+
+.titoloDettagliPage {
+  color: $primary-color;
+  font-weight: 700;
+}
+
+//  CCCCC RRRRR  EEEEEEE  AAAAA   IIII  MM  MM MM  MM  OOOOO  BBBBBB  IIII  L     EEEEEEE
+//  C     R    R EE      A     A   II   M MM M M MM M OO   OO B    B   II   L     EE
+//  C     RRRRR  EEEE    AAAAAAA   II   M    M M    M OO   OO BBBBB    II   L     EEEE
+//  C     R   R  EE      A     A   II   M    M M    M OO   OO B    B   II   L     EE
+//  CCCCC R    R EEEEEEE A     A  IIII  M    M M    M  OOOOO  BBBBBB  IIII  LLLLL EEEEEEE
+
+.titoloCreaImmobile {
+  color: $primary-color;
+  font-weight: 700;
+}
+
+.immaginiCreaImmobile {
+  color: $primary-color;
+  font-weight: 700;
+}
+
+.formAggiungiImmobile {
+  input,
+  select,
+  textarea {
+    background-color: #f8f9fa;
+    border: 1px solid $primary-color;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    &:focus {
+      box-shadow: 0 0 10px rgba(0, 123, 255, 0.25);
+      border-color: #80bdff;
+    }
+  }
+}
+
+.bottoneInserisciImmobile {
+  background-color: white;
+  color: $primary-color;
+  border: 2px solid $primary-color;
+  border-radius: 0px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+  }
+}
+.customFileCreaImmobile {
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: $primary-color;
+  color: white;
+  border-radius: 4px;
+  font-size: 18px;
+  &:hover {
+    background-color: $background-color-hover;
+  }
+}
+
+.bottoneRimuoviCreaImmobile {
+  background-color: $delete-color;
+  color: $font-color-white;
+  &:hover {
+    background-color: $anotherdelete-color;
+  }
+}
+
+// MM  MM  OOOOO  DDDDD  IIII  FFFFFF IIII CCCCC   AAAAA   IIII  MM  MM MM  MM  OOOOO  BBBBBB  IIII  L     EEEEEEE
+// M MM M OO   OO D   D   II   FF      II  C      A     A   II   M MM M M MM M OO   OO B    B   II   L     EE
+// M    M OO   OO D   D   II   FFFF    II  C      AAAAAAA   II   M    M M    M OO   OO BBBBB    II   L     EEEE
+// M    M OO   OO D   D   II   FF      II  C      A     A   II   M    M M    M OO   OO B    B   II   L     EE
+// M    M  OOOOO  DDDDD  IIII  FF     IIII CCCCC  A     A  IIII  M    M M    M  OOOOO  BBBBBB  IIII  LLLLL EEEEEEE
+
+.titoloModificaImmobile {
+  color: $primary-color;
+  font-weight: 700;
+}
+
+.bottoneSalvaModificaImmobile {
+  background-color: white;
+  color: $primary-color;
+  border: 2px solid $primary-color;
+  border-radius: 0px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+  }
+}
+
+.bottoneCaricaModificaImmobile {
+  background-color: $primary-color;
+  color: $font-color-white;
+  padding-inline: 40px;
+  &:disabled {
+    background-color: grey;
+  }
+}
+
+.bottoneImpostaCopertinaModifica {
+  background-color: $primary-color;
+  color: $font-color-white;
+  &:hover {
+    background-color: $background-color-hover;
+  }
+}
+
+.copertinaImpostata {
+  color: $primary-color;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.bottoneRimuoviModificaImmobili {
+  background-color: $delete-color;
+  color: $font-color-white;
+  &:hover {
+    background-color: $anotherdelete-color;
+  }
+}
+
+.formModificaImmobile {
+  input,
+  select,
+  textarea {
+    background-color: #f8f9fa;
+    border: 1px solid $primary-color;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    &:focus {
+      box-shadow: 0 0 10px rgba(0, 123, 255, 0.25);
+      border-color: #80bdff;
+    }
+  }
+}
+
+.scegliFileModificaImmobile {
+  display: none;
+}
+
+.customFileModificaImmobile {
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: $primary-color;
+  color: white;
+  border-radius: 4px;
+  &:hover {
+    background-color: $background-color-hover;
   }
 }
 
@@ -425,8 +646,106 @@ footer {
   background-color: $delete-color;
   color: $font-color-white;
   padding-inline: 40px;
+  border: none;
   &:hover {
     background-color: $anotherdelete-color;
+  }
+}
+
+// MM  MM  OOOOO  DDDDD  IIII  FFFFFF IIII CCCCC   AAAAA   U   U TTTTTTTT EEEEEEE N   N TTTTTTTT EEEEEEE
+// M MM M OO   OO D   D   II   FF      II  C      A     A  U   U    TT    EE      NN  N    TT    EE
+// M    M OO   OO D   D   II   FFFF    II  C      AAAAAAA  U   U    TT    EEEE    N N N    TT    EEEE
+// M    M OO   OO D   D   II   FF      II  C      A     A  U   U    TT    EE      N  NN    TT    EE
+// M    M  OOOOO  DDDDD  IIII  FF     IIII CCCCC  A     A   UUU     TT    EEEEEEE N   N    TT    EEEEEEE
+
+.formModificaUtente {
+  input,
+  select,
+  textarea {
+    background-color: #f8f9fa;
+    border: 1px solid $primary-color;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    &:focus {
+      box-shadow: 0 0 10px rgba(0, 123, 255, 0.25);
+      border-color: #80bdff;
+    }
+  }
+}
+
+.customFileModificaUtente {
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: $primary-color;
+  color: white;
+  border-radius: 4px;
+  &:hover {
+    background-color: $background-color-hover;
+  }
+}
+
+.bottoneAggiornaUtente {
+  background-color: white;
+  color: $primary-color;
+  border: 2px solid $primary-color;
+  border-radius: 0px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+  }
+}
+
+//  CCCC  RRRRR   EEEEE   AAAAA  U   U  TTTTTTT EEEEE  N   N  TTTTT  EEEEE
+// C      R    R  E      A     A U   U     T    E      NN  N    T    E
+// C      RRRRR   EEEE   AAAAAAA U   U     T    EEEE   N N N    T    EEEE
+// C      R   R   E      A     A U   U     T    E      N  NN    T    E
+//  CCCC  R    R  EEEEE  A     A  UUU      T    EEEEE  N   N    T    EEEEE
+
+.titoloCreaUtente {
+  color: $primary-color;
+  font-weight: 700;
+}
+
+.formCreaUtente {
+  input,
+  select,
+  textarea {
+    background-color: #f8f9fa;
+    border: 1px solid $primary-color;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    &:focus {
+      box-shadow: 0 0 10px rgba(0, 123, 255, 0.25);
+      border-color: #80bdff;
+    }
+  }
+}
+
+.bottoneCreaUtente {
+  background-color: white;
+  color: $primary-color;
+  border: 2px solid $primary-color;
+  border-radius: 0px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+  }
+}
+
+.customFileCreaUtente {
+  display: block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: $primary-color;
+  color: white;
+  border-radius: 4px;
+  &:hover {
+    background-color: $background-color-hover;
   }
 }
 
@@ -435,6 +754,11 @@ footer {
 // GG  GGG EEEE    SSSSSSS    TT     II  OO   OO  NN  N NN EEEE     V V  AAAAA  L     U   U    TT    AAAAA      Z    II  OO   OO N N N  II
 // GG   GG EE           SS    TT     II  OO   OO  NN   NNN EE        V   A   A  L     U   U    TT    A   A    Z      II  OO   OO N  NN  II
 //  GGGGG  EEEEEEE SSSSSSS    TT    IIII  OOOOO   NN    NN EEEEEEE   V   A   A  LLLLL  UUU     TT    A   A  ZZZZZZZ IIII  OOOOO  N   N IIII
+
+.titoloGestioneValutazioni {
+  color: $primary-color;
+  font-weight: 700;
+}
 
 .tableCustomGestioneValutazioni {
   thead th {
@@ -465,7 +789,137 @@ footer {
   background-color: $delete-color;
   color: $font-color-white;
   padding-inline: 40px;
+  border: none;
   &:hover {
     background-color: $anotherdelete-color;
+  }
+}
+
+// DDDD   EEEEEEE  TTTTTTT  TTTTTTT  AAAAA  GGGGG  L       IIIII V   V AAAAA  L     U   U TTTTTTTT AAAAA  ZZZZZZZ IIIII OOOOO  N   N  EEEEEEE
+// D   D  EE          T        T    A   A GG   GG L         II   V   V A   A  L     U   U    TT    A   A        Z  II   OO   OO NN  N  EE
+// D   D  EEEE        T        T    AAAAA GG      L         II    V V  AAAAA  L     U   U    TT    AAAAA      Z   II   OO   OO N N N  EEEE
+// D   D  EE          T        T    A   A GG   GG L         II     V   A   A  L     U   U    TT    A   A    Z     II   OO   OO N  NN  EE
+// DDDD   EEEEEEE     T        T    A   A  GGGGG  LLLLL  IIIII     V   A   A  LLLLL  UUU     TT    A   A  ZZZZZZZ IIIII  OOOOO  N   N  EEEEEEE
+
+.containerDettagliValutazione {
+  border: 2px solid $primary-color;
+}
+
+.titoloDettagliValutazione,
+.sottoTitoloDettagliValutazione {
+  color: $primary-color;
+  font-weight: 700;
+}
+.sottoTitoloDettagliValutazione {
+  border-top: 1px solid $primary-color;
+}
+
+.customBadgeDettagliValutazioni {
+  background-color: $primary-color !important;
+  color: $font-color-white;
+  padding: 0.5rem 1rem;
+}
+.customBadgeDisattivatoDettagliValutazioni {
+  background-color: $anotherdelete-color !important;
+  color: $font-color-white;
+  padding: 0.5rem 1rem;
+}
+
+.bottoneCambiaStatoDettagliValutazione {
+  background-color: white;
+  color: $primary-color;
+  border: 2px solid $primary-color;
+  border-radius: 0px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+  }
+}
+
+.bottoneTornaListaDettagliValutazione {
+  background-color: white;
+  color: $primary-color;
+  border: 2px solid $primary-color;
+  border-radius: 0px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+  }
+}
+
+// L      OOO   GGGG  IIII N   N
+// L     O   O G       II  NN  N
+// L     O   O G  GG   II  N N N
+// L     O   O G   G   II  N  NN
+// LLLLL  OOO   GGGG  IIII N   N
+
+.titoloLogin {
+  color: $primary-color;
+  font-weight: 700;
+}
+
+.bottoneLogin {
+  background-color: white;
+  color: $primary-color;
+  border: 2px solid $primary-color;
+  border-radius: 0px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+  }
+}
+
+.formLogin {
+  input,
+  select,
+  textarea {
+    background-color: #f8f9fa;
+    border: 1px solid $primary-color;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    &:focus {
+      box-shadow: 0 0 10px rgba(0, 123, 255, 0.25);
+      border-color: #80bdff;
+    }
+  }
+}
+
+// MM  MM  OOOOO  DDDDD   AAAAA  L     EEEEEEE
+// M MM M OO   OO D   D  A     A L     EE
+// M    M OO   OO D   D  AAAAAAA L     EEEE
+// M    M OO   OO D   D  A     A L     EE
+// M    M  OOOOO  DDDDD  A     A LLLLL EEEEEEE
+
+.bottoneCancellaModale {
+  background-color: $delete-color;
+  color: $font-color-white;
+  border: none;
+  &:hover {
+    background-color: $anotherdelete-color;
+  }
+}
+
+// FFFFF  OOO   OOO  TTTTT  EEEEE  RRRR
+// F     O   O O   O   T    E      R   R
+// FFF   O   O O   O   T    EEEE   RRRR
+// F     O   O O   O   T    E      R  R
+// F      OOO   OOO    T    EEEEE  R   R
+
+.footerPeso {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.footerContainer {
+  p {
+    font-size: 1rem;
   }
 }

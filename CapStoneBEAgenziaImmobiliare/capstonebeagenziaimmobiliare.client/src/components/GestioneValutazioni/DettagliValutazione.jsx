@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchValutazioneDettagli, toggleAttivo } from "../../redux/actions/gestioneValutazione";
-import { Container, Spinner, Alert, Button, ListGroup } from "react-bootstrap";
+import { Container, Spinner, Alert, Button, Row, Col, Badge } from "react-bootstrap";
 
 export function DettagliValutazione() {
   const { id } = useParams();
@@ -50,71 +50,82 @@ export function DettagliValutazione() {
     cucina,
     postiAuto,
     sala,
+    attivo,
   } = valutazioneDettagli;
 
   return (
-    <Container className="mt-4">
-      <h2>Dettagli Valutazione</h2>
-
-      <h4>Dati Cliente</h4>
-      <ListGroup variant="flush">
-        <ListGroup.Item>
-          <strong>Nome:</strong> {nome}
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <strong>Cognome:</strong> {cognome}
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <strong>Cellulare:</strong> {cellulare}
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <strong>Email:</strong> {email}
-        </ListGroup.Item>
-      </ListGroup>
-
-      <h4>Dati Immobile</h4>
-      <ListGroup variant="flush">
-        <ListGroup.Item>
-          <strong>Indirizzo:</strong> {indirizzo}
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <strong>Metratura:</strong> {metratura} m²
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <strong>Camere da Letto:</strong> {camereDaLetto}
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <strong>Bagni:</strong> {bagni}
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <strong>Cucina:</strong> {cucina}
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <strong>Sala:</strong> {sala}
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <strong>Altri Vani:</strong> {altriVani}
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <strong>Box:</strong> {box}
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <strong>Posti Auto:</strong> {postiAuto}
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <strong>Caratteristiche Speciali:</strong> {caratteristicheSpeciali}
-        </ListGroup.Item>
-        <ListGroup.Item>
-          <strong>Attivo:</strong> {valutazioneDettagli.attivo ? "Sì" : "No"}
-          <Button onClick={handleToggleActive} variant="secondary" size="sm" className="ms-2">
-            Cambia Stato
-          </Button>
-        </ListGroup.Item>
-      </ListGroup>
-
-      <Button variant="primary" onClick={() => navigate(-1)} className="mt-3">
-        Torna alla lista
+    <Container className="my-4 containerDettagliValutazione">
+      <h2 className="titoloDettagliValutazione">Dettagli Valutazione</h2>
+      <Badge className={attivo ? "customBadgeDettagliValutazioni" : "customBadgeDisattivatoDettagliValutazioni"}>
+        Attivo: {attivo ? "Sì" : "No"}
+      </Badge>
+      <Button onClick={handleToggleActive} size="sm" className="ms-2 bottoneCambiaStatoDettagliValutazione">
+        Cambia Stato
       </Button>
+      <h4 className="sottoTitoloDettagliValutazione mt-4 pt-4">Dati Cliente</h4>
+      <Row className="mb-2">
+        <Col>
+          <Badge className="customBadgeDettagliValutazioni">Nome:</Badge> {nome}
+        </Col>
+        <Col>
+          <Badge className="customBadgeDettagliValutazioni">Cognome:</Badge> {cognome}
+        </Col>
+      </Row>
+      <Row className="mb-2">
+        <Col>
+          <Badge className="customBadgeDettagliValutazioni">Cellulare:</Badge> {cellulare}
+        </Col>
+        <Col>
+          <Badge className="customBadgeDettagliValutazioni">Email:</Badge> {email}
+        </Col>
+      </Row>
+
+      <h4 className="sottoTitoloDettagliValutazione mt-4 pt-4">Dati Immobile</h4>
+      <Row className="mb-2">
+        <Col>
+          <Badge className="customBadgeDettagliValutazioni">Indirizzo:</Badge> {indirizzo}
+        </Col>
+        <Col>
+          <Badge className="customBadgeDettagliValutazioni">Metratura:</Badge> {metratura} m²
+        </Col>
+      </Row>
+      <Row className="mb-2">
+        <Col>
+          <Badge className="customBadgeDettagliValutazioni">Camere da Letto:</Badge> {camereDaLetto}
+        </Col>
+        <Col>
+          <Badge className="customBadgeDettagliValutazioni">Bagni:</Badge> {bagni}
+        </Col>
+      </Row>
+      <Row className="mb-2">
+        <Col>
+          <Badge className="customBadgeDettagliValutazioni">Cucina:</Badge> {cucina}
+        </Col>
+        <Col>
+          <Badge className="customBadgeDettagliValutazioni">Sala:</Badge> {sala}
+        </Col>
+      </Row>
+      <Row className="mb-2">
+        <Col>
+          <Badge className="customBadgeDettagliValutazioni">Altri Vani:</Badge> {altriVani}
+        </Col>
+        <Col>
+          <Badge className="customBadgeDettagliValutazioni">Box:</Badge> {box}
+        </Col>
+      </Row>
+      <Row className="mb-2">
+        <Col>
+          <Badge className="customBadgeDettagliValutazioni">Posti Auto:</Badge> {postiAuto}
+        </Col>
+        <Col>
+          <Badge className="customBadgeDettagliValutazioni">Caratteristiche Speciali:</Badge> {caratteristicheSpeciali}
+        </Col>
+      </Row>
+      <div className="my-4 text-center">
+        <Button onClick={() => navigate(-1)} className="mt-3 bottoneTornaListaDettagliValutazione">
+          Torna alla lista
+        </Button>
+      </div>
     </Container>
   );
 }

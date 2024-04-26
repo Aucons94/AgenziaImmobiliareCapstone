@@ -33,8 +33,8 @@ const DettagliPage = () => {
   return (
     <Container className="my-4">
       <Row>
-        <Col md={6}>
-          <Carousel>
+        <Col lg={12} xl={7}>
+          <Carousel className="dettagliPageCarousel">
             {immobile.immagini.map((immagine, index) => (
               <Carousel.Item key={index}>
                 <img
@@ -46,16 +46,13 @@ const DettagliPage = () => {
             ))}
           </Carousel>
         </Col>
-        <Col md={6}>
-          <Card>
-            <Card.Header as="h5">{immobile.titolo}</Card.Header>
+        <Col lg={12} xl={5}>
+          <Card className="cardDettagliPage p-2 my-2">
+            <Card.Header as="h4" className="titoloDettagliPage">
+              {immobile.titolo}
+            </Card.Header>
             <Card.Body>
               <ListGroup variant="flush">
-                {immobile.descrizione && (
-                  <ListGroup.Item>
-                    <strong>Descrizione:</strong> {immobile.descrizione}
-                  </ListGroup.Item>
-                )}
                 {immobile.prezzo && (
                   <ListGroup.Item>
                     <strong>Prezzo:</strong> €{immobile.prezzo}
@@ -110,10 +107,21 @@ const DettagliPage = () => {
             </Card.Body>
           </Card>
         </Col>
+        <Col xs={12}>
+          <ListGroup variant="flush" className="p-2 descrizioneDettagliPage">
+            {immobile.descrizione && (
+              <ListGroup.Item>
+                <strong>Descrizione:</strong> {immobile.descrizione}
+              </ListGroup.Item>
+            )}
+          </ListGroup>
+        </Col>
       </Row>
-      <Button variant="secondary" onClick={() => navigate(-1)} className="mb-3">
-        Torna alla lista
-      </Button>
+      <div className="mt-3 text-center">
+        <Button onClick={() => navigate(-1)} className="mb-3 tornaGestioneImmobiliButton">
+          Torna alla lista
+        </Button>
+      </div>
     </Container>
   );
 };

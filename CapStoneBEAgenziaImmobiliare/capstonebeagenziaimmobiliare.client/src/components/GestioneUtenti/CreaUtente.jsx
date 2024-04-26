@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Form, Container, Alert, Modal } from "react-bootstrap";
+import { Button, Form, Container, Modal } from "react-bootstrap";
 import { creaUtente, fetchRuoli } from "../../redux/actions/gestioneUtentiAction";
 import { useNavigate } from "react-router-dom";
 
@@ -17,10 +17,12 @@ function CreaUtente() {
   const [previewSrc, setPreviewSrc] = useState("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
   const [error, setError] = useState("");
+  const fileInputRef = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { ruoli } = useSelector((state) => state.gestioneUtenti);
+  const ruoli = useSelector((state) => state.gestioneUtenti.ruoli);
 
   useEffect(() => {
     dispatch(fetchRuoli());
@@ -33,48 +35,52 @@ function CreaUtente() {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setFormData((prev) => ({ ...prev, foto: file }));
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewSrc(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
+    processFile(file);
   };
 
-  const handleCheckboxChange = () => {
-    setShowPassword(!showPassword);
+  const handleFileClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const processFile = (file) => {
+    setFormData((prev) => ({ ...prev, foto: file }));
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPreviewSrc(reader.result);
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!formData.foto) {
+      setError("Inserisci un'immagine.");
+      setShowErrorModal(true);
+      return;
+    }
     if (formData.password !== formData.confermaPassword) {
-      setError("Le password non corrispondono");
+      setError("Le password non corrispondono.");
+      setShowErrorModal(true);
       return;
     }
     const data = new FormData();
     Object.keys(formData).forEach((key) => {
       data.append(key, formData[key]);
     });
-    dispatch(creaUtente(data, setError))
+    dispatch(creaUtente(data))
       .then(() => {
         setShowSuccessModal(true);
       })
-      .catch((error) => {
-        console.log(error);
-        setError("Errore durante la creazione dell'utente");
+      .catch(() => {
+        setError("Errore durante la creazione dell'utente.");
+        setShowErrorModal(true);
       });
   };
 
-  const handleModalClose = () => {
-    setShowSuccessModal(false);
-    navigate("/GestioneUtenti");
-  };
-
   return (
-    <Container>
-      <Form onSubmit={handleSubmit}>
+    <Container className="my-4">
+      <h2 className="titoloCreaUtente">Aggiungi un nuovo membro allo Staff</h2>
+      <Form onSubmit={handleSubmit} className="formCreaUtente">
         <Form.Group controlId="nome">
           <Form.Label>Nome</Form.Label>
           <Form.Control type="text" name="nome" value={formData.nome} onChange={handleChange} required />
@@ -119,26 +125,39 @@ function CreaUtente() {
           />
         </Form.Group>
         <Form.Group controlId="showPassword">
-          <Form.Check type="checkbox" label="Mostra Password" checked={showPassword} onChange={handleCheckboxChange} />
+          <Form.Check
+            type="checkbox"
+            label="Mostra Password"
+            checked={showPassword}
+            onChange={() => setShowPassword(!showPassword)}
+          />
         </Form.Group>
-        <Form.Group controlId="foto">
-          <Form.Label>Foto</Form.Label>
-          <Form.Control type="file" onChange={handleFileChange} />
+        <Form.Group controlId="foto" className="mt-3">
+          <Button onClick={handleFileClick} className="customFileCreaUtente">
+            Carica Immagine
+          </Button>
+          <input type="file" ref={fileInputRef} onChange={handleFileChange} style={{ display: "none" }} />
           {previewSrc && <img src={previewSrc} alt="Preview" style={{ marginTop: "10px", maxHeight: "200px" }} />}
         </Form.Group>
-        {error && <Alert variant="danger">{error}</Alert>}
-        <Button type="submit" variant="primary">
-          Crea Utente
-        </Button>
+        {error && (
+          <Modal show={showErrorModal} onHide={() => setShowErrorModal(false)}>
+            <Modal.Body>{error}</Modal.Body>
+          </Modal>
+        )}
+        <div className="my-4 text-center">
+          <Button type="submit" className="bottoneCreaUtente">
+            Crea Utente
+          </Button>
+        </div>
       </Form>
 
-      <Modal show={showSuccessModal} onHide={handleModalClose}>
+      <Modal show={showSuccessModal} onHide={() => navigate("/GestioneUtenti")}>
         <Modal.Header closeButton>
           <Modal.Title>Utente Creato</Modal.Title>
         </Modal.Header>
         <Modal.Body>Utente creato con successo!</Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleModalClose}>
+          <Button variant="primary" onClick={() => navigate("/GestioneUtenti")}>
             OK
           </Button>
         </Modal.Footer>

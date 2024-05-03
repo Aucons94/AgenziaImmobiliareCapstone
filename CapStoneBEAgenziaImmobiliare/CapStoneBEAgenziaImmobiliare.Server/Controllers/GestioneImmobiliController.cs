@@ -17,11 +17,13 @@ namespace CapStoneBEAgenziaImmobiliare.Server.Controllers
     {
         private readonly AgenziaImmobiliareContext _context;
         private readonly ILogger<GestioneImmobiliController> _logger;
+        private readonly string _basePath;
 
-        public GestioneImmobiliController(AgenziaImmobiliareContext context, ILogger<GestioneImmobiliController> logger)
+        public GestioneImmobiliController(AgenziaImmobiliareContext context, ILogger<GestioneImmobiliController> logger, IWebHostEnvironment env)
         {
             _context = context;
             _logger = logger;
+            _basePath = Path.Combine(env.ContentRootPath, "images", "immobili");
         }
 
         [HttpGet]
@@ -262,16 +264,14 @@ namespace CapStoneBEAgenziaImmobiliare.Server.Controllers
                 return BadRequest("No file uploaded.");
             }
 
-            string basePath = @"C:\Users\Alessandro\Desktop\Capstone\AgenziaImmobiliare\CapStoneBEAgenziaImmobiliare\CapStoneBEAgenziaImmobiliare.Server\";
-            string immobiliDirectory = Path.Combine(basePath, "images", "immobili");
+            
 
-
-            if (!Directory.Exists(immobiliDirectory))
+            if (!Directory.Exists(_basePath))
             {
-                Directory.CreateDirectory(immobiliDirectory);
+                Directory.CreateDirectory(_basePath);
             }
 
-            string filePath = Path.Combine(immobiliDirectory, file.FileName);
+            string filePath = Path.Combine(_basePath, file.FileName);
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 await file.CopyToAsync(stream);
@@ -332,8 +332,7 @@ namespace CapStoneBEAgenziaImmobiliare.Server.Controllers
                     return NotFound("Immagine non trovata.");
                 }
 
-                string basePath = @"C:\Users\Alessandro\Desktop\Capstone\AgenziaImmobiliare\CapStoneBEAgenziaImmobiliare\CapStoneBEAgenziaImmobiliare.Server\";
-                var filePath = Path.Combine(basePath, "images", "immobili", immagine.Immagine);
+                var filePath = Path.Combine(_basePath,immagine.Immagine);
                 if (System.IO.File.Exists(filePath))
                 {
                     System.IO.File.Delete(filePath);

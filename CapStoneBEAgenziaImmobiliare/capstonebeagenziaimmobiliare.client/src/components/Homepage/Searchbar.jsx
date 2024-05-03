@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { fetchRicercaImmobili } from "../../redux/actions/CercaCasaAction";
 
 const immaginiDiSfondo = [
-  "https://re.replat.com/index.php?ac=view_photo_db&site=131359&photo=personal_top",
-  "https://www.frimm.com/style/0_0/img/sharer_ps_frimmacademy.jpg",
+  "/src/assets/sfondo1.png",
   "https://media.licdn.com/dms/image/D4E22AQHe1mYmlsUfZw/feedshare-shrink_800/0/1700840010982?e=2147483647&v=beta&t=7YCxj1QQPXqnllnotobWCitowsG6sFKd6v1Y1AFnmwk",
 ];
 

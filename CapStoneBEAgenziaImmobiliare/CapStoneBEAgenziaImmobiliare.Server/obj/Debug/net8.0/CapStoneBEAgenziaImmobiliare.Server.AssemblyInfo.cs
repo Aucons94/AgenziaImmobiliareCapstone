@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CapStoneBEAgenziaImmobiliare.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e39eaaab5533431cf782b868e60138507b3484f8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c74d76b44c861fdce3d03e45c75e61b342c59532")]
 [assembly: System.Reflection.AssemblyProductAttribute("CapStoneBEAgenziaImmobiliare.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CapStoneBEAgenziaImmobiliare.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

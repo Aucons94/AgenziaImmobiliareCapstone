@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using CapStoneBEAgenziaImmobiliare.Server.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Humanizer.Localisation;
 using Microsoft.Extensions.Hosting.Internal;
@@ -15,10 +16,10 @@ public class GestioneUtentiController : ControllerBase
     private readonly AgenziaImmobiliareContext _context;
     private readonly string _staffImagesPath;
 
-    public GestioneUtentiController(AgenziaImmobiliareContext context, IConfiguration configuration)
+    public GestioneUtentiController(AgenziaImmobiliareContext context, IWebHostEnvironment env)
     {
         _context = context;
-        _staffImagesPath = configuration["FilePaths:StaffImages"];
+        _staffImagesPath = Path.Combine(env.ContentRootPath, "images", "staff");
     }
 
     [HttpGet]

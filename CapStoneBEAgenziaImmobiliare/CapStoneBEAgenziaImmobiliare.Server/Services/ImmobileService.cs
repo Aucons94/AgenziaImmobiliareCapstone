@@ -33,7 +33,7 @@ namespace CapStoneBEAgenziaImmobiliare.Server.Services
                 Bagni = i.Bagni,
                 Metratura = i.Metratura,
                 AltriVani = i.AltriVani,
-                ImmagineCopertina = i.ImmagineCasa
+                ImmagineCopertina = i.ImmagineCasa?
                     .Where(img => img.ImmagineCopertina)
                     .Select(img => baseUrl + img.Immagine)
                     .FirstOrDefault()
@@ -67,12 +67,12 @@ namespace CapStoneBEAgenziaImmobiliare.Server.Services
                 Pubblicata = immobile.Pubblicata,
                 Locazione = immobile.Locazione,
                 FkIdUser = immobile.FkIdUser,
-                Immagini = immobile.ImmagineCasa.Select(img => new ImmagineDto
+                Immagini = immobile.ImmagineCasa?.Select(img => new ImmagineDto
                 {
                     IdImmagine = img.IdImmagine,
                     Immagine = baseUrl + img.Immagine,
                     ImmagineCopertina = img.ImmagineCopertina
-                }).ToList()
+                }).ToList() ?? new List<ImmagineDto>()
             };
         }
 

@@ -1,8 +1,12 @@
-export const LOGIN_REQUEST = "LOGIN_REQUEST";
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_FAILURE = "LOGIN_FAILURE";
-export const SET_LOGGED_PROFILE = "SET_LOGGED_PROFILE";
-export const LOGOUT = "LOGOUT";
+import {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  SET_LOGGED_PROFILE,
+  LOGOUT,
+} from "../constants/actionTypes";
+import apiClient from "../../services/apiClient";
+import { API_ENDPOINTS } from "../../config/apiConfig";
 
 export const loginRequest = () => ({
   type: LOGIN_REQUEST,
@@ -41,24 +45,11 @@ export const logout = () => {
 export const fetchLogin = (loginObj) => async (dispatch) => {
   dispatch(loginRequest());
   try {
-    const response = await fetch("https://localhost:7124/Auth/token", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(loginObj),
-    });
-
-    if (!response.ok) {
-      const err = await response.json();
-      console.error("Errore nel fetch:", err);
-      dispatch(loginFailure(err));
-    } else {
-      const loggedProfileData = await response.json();
-      dispatch(loginSuccess(loggedProfileData));
-    }
+    const response = await apiClient.post(API_ENDPOINTS.AUTH_TOKEN, loginObj);
+    const loggedProfileData = await response.json();
+    dispatch(loginSuccess(loggedProfileData));
   } catch (error) {
-    console.error("Errore nel fetch:", error);
-    dispatch(loginFailure("Errore di connessione"));
+    console.error("Errore nel login:", error);
+    dispatch(loginFailure(error.message || "Errore di connessione"));
   }
 };

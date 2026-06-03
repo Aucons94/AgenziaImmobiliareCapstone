@@ -1,4 +1,5 @@
 using CapStoneBEAgenziaImmobiliare.Server.DTOs.Immobile;
+using CapStoneBEAgenziaImmobiliare.Server.DTOs.User;
 using Microsoft.AspNetCore.Http;
 
 namespace CapStoneBEAgenziaImmobiliare.Server.Interfaces

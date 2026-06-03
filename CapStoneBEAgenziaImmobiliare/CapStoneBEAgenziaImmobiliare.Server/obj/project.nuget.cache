@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Hk+b8mET4fl5smSbYaS4gUsMjdl4FxnLdi5sSt54QbRIb1ScykCO0U2y11o/X/rQn+hbfBQJO4n1OHn07OnypA==",
+  "dgSpecHash": "5ZYm6KqtJ4Y=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj",
+  "projectFilePath": "C:\\Users\\Alessandro\\Documents\\AgenziaImmobiliareCapstone\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alessandro\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Alessandro\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
@@ -66,7 +66,7 @@
     "C:\\Users\\Alessandro\\.nuget\\packages\\microsoft.aspnetcore.metadata\\8.0.3\\microsoft.aspnetcore.metadata.8.0.3.nupkg.sha512",
     "C:\\Users\\Alessandro\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.3\\microsoft.aspnetcore.openapi.8.0.3.nupkg.sha512",
     "C:\\Users\\Alessandro\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.24\\microsoft.aspnetcore.razor.language.6.0.24.nupkg.sha512",
-    "C:\\Users\\Alessandro\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\8.0.4\\microsoft.aspnetcore.spaproxy.8.0.4.nupkg.sha512",
+    "C:\\Users\\Alessandro\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\8.0.27\\microsoft.aspnetcore.spaproxy.8.0.27.nupkg.sha512",
     "C:\\Users\\Alessandro\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "C:\\Users\\Alessandro\\.nuget\\packages\\microsoft.build\\17.8.3\\microsoft.build.17.8.3.nupkg.sha512",
     "C:\\Users\\Alessandro\\.nuget\\packages\\microsoft.build.framework\\17.8.3\\microsoft.build.framework.17.8.3.nupkg.sha512",

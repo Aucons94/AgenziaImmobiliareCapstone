@@ -800,7 +800,7 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.Razor.Language.dll": {}
         }
       },
-      "Microsoft.AspNetCore.SpaProxy/8.0.4": {
+      "Microsoft.AspNetCore.SpaProxy/8.0.27": {
         "type": "package",
         "compile": {
           "lib/net8.0/Microsoft.AspNetCore.SpaProxy.dll": {}
@@ -3918,10 +3918,10 @@
         "microsoft.aspnetcore.razor.language.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.SpaProxy/8.0.4": {
-      "sha512": "knuNBv+I6bYjaUHb6KoFEU7CjkKgzwHQWmdcMgUZ8DuLzQQxSS8dd/OacVccaKtTEz5PDFDeIKU8Gg+Pgu+Xvw==",
+    "Microsoft.AspNetCore.SpaProxy/8.0.27": {
+      "sha512": "xE0GUhCU31MOiFHEqqubuuZyFNRh1Fmv47/p6TC2L4cuzvnFEnJ20E6kNnVPKZl+kVGPbXzUEZDos1X1SK62WA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.spaproxy/8.0.4",
+      "path": "microsoft.aspnetcore.spaproxy/8.0.27",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3929,7 +3929,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "build/Microsoft.AspNetCore.SpaProxy.targets",
         "lib/net8.0/Microsoft.AspNetCore.SpaProxy.dll",
-        "microsoft.aspnetcore.spaproxy.8.0.4.nupkg.sha512",
+        "microsoft.aspnetcore.spaproxy.8.0.27.nupkg.sha512",
         "microsoft.aspnetcore.spaproxy.nuspec"
       ]
     },
@@ -8337,19 +8337,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Alessandro\\.nuget\\packages\\": {}
+    "C:\\Users\\Alessandro\\.nuget\\packages\\": {},
+    "E:\\Visual Code\\Componenti condivisi, strumenti e SDK\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj",
+      "projectUniqueName": "C:\\Users\\Alessandro\\Documents\\AgenziaImmobiliareCapstone\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj",
       "projectName": "CapStoneBEAgenziaImmobiliare.Server",
-      "projectPath": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj",
+      "projectPath": "C:\\Users\\Alessandro\\Documents\\AgenziaImmobiliareCapstone\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj",
       "packagesPath": "C:\\Users\\Alessandro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\obj\\",
+      "outputPath": "C:\\Users\\Alessandro\\Documents\\AgenziaImmobiliareCapstone\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "E:\\Visual Code\\Componenti condivisi, strumenti e SDK\\NuGetPackages"
+      ],
       "configFilePaths": [
         "C:\\Users\\Alessandro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8374,7 +8379,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0": {
@@ -8444,7 +8450,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.314/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

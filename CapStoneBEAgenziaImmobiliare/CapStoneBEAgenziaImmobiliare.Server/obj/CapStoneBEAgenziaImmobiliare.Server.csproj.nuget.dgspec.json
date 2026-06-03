@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj": {}
+    "C:\\Users\\Alessandro\\Documents\\AgenziaImmobiliareCapstone\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj": {
+    "C:\\Users\\Alessandro\\Documents\\AgenziaImmobiliareCapstone\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj",
+        "projectUniqueName": "C:\\Users\\Alessandro\\Documents\\AgenziaImmobiliareCapstone\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj",
         "projectName": "CapStoneBEAgenziaImmobiliare.Server",
-        "projectPath": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj",
+        "projectPath": "C:\\Users\\Alessandro\\Documents\\AgenziaImmobiliareCapstone\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\CapStoneBEAgenziaImmobiliare.Server.csproj",
         "packagesPath": "C:\\Users\\Alessandro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alessandro\\Desktop\\Capstone\\AgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\obj\\",
+        "outputPath": "C:\\Users\\Alessandro\\Documents\\AgenziaImmobiliareCapstone\\CapStoneBEAgenziaImmobiliare\\CapStoneBEAgenziaImmobiliare.Server\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "E:\\Visual Code\\Componenti condivisi, strumenti e SDK\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Alessandro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,7 +43,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -109,7 +114,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.314/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

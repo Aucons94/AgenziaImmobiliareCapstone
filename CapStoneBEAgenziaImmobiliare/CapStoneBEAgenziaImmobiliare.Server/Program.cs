@@ -1,4 +1,7 @@
 using CapStoneBEAgenziaImmobiliare.Server.Models;
+using CapStoneBEAgenziaImmobiliare.Server.Interfaces;
+using CapStoneBEAgenziaImmobiliare.Server.Repositories;
+using CapStoneBEAgenziaImmobiliare.Server.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +14,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AgenziaImmobiliareContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyDatabase")));
+
+// Registrazione Repository
+builder.Services.AddScoped<IImmobileRepository, ImmobileRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IValutazioneRepository, ValutazioneRepository>();
+builder.Services.AddScoped<IRuoloRepository, RuoloRepository>();
+
+// Registrazione Services
+builder.Services.AddScoped<IImmobileService, ImmobileService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IValutazioneService, ValutazioneService>();
 
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

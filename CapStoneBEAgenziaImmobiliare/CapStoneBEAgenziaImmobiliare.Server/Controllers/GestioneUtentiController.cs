@@ -25,17 +25,7 @@ public class GestioneUtentiController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<object>>> FetchGestioneUtenti()
     {
-        var users = await _context.Staff
-            .Include(u => u.Ruolo)
-                                  .Where(u => !u.Cancellato)
-                                  .Select(u => new
-                                  {
-                                      IdUser = u.IdUser,
-                                      Nome = u.Nome,
-                                      Cognome = u.Cognome,
-                                      Ruolo = u.Ruolo.Role,
-                                  })
-                                  .ToListAsync();
+        var users = await _userService.GetAllUsersAsync();
         return Ok(users);
     }
 
@@ -43,14 +33,11 @@ public class GestioneUtentiController : ControllerBase
     [HttpPut("{id}/delete")]
     public async Task<IActionResult> DeleteUser(int id)
     {
-        var user = await _context.Staff.FirstOrDefaultAsync(u => u.IdUser == id);
-        if (user == null)
+        var result = await _userService.DeleteUserAsync(id);
+        if (!result)
         {
             return NotFound();
         }
-
-        user.Cancellato = true;
-        await _context.SaveChangesAsync();
 
         return NoContent();
     }
@@ -59,18 +46,7 @@ public class GestioneUtentiController : ControllerBase
     public async Task<ActionResult<dynamic>> GetUtente(int id)
     {
         var baseUrl = $"{Request.Scheme}://{Request.Host}/images/staff/";
-        var user = await _context.Staff
-                                 .Include(u => u.Ruolo)
-                                 .Select(u => new
-                                 {
-                                     IdUser = u.IdUser,
-                                     Nome = u.Nome,
-                                     Cognome = u.Cognome,
-                                     Telefono = u.Telefono,
-                                     Foto = u.Foto != null ? baseUrl + u.Foto : null,
-                                     Ruolo = u.Ruolo.Role
-                                 })
-                                 .FirstOrDefaultAsync(u => u.IdUser == id);
+        var user = await _userService.GetUserByIdAsync(id, baseUrl);
 
         if (user == null)
         {
@@ -80,87 +56,31 @@ public class GestioneUtentiController : ControllerBase
         return user;
     }
 
-    public class UserDto
-    {
-        public string Nome { get; set; }
-        public string Cognome { get; set; }
-        public string Telefono { get; set; }
-        public int? FkIdRuolo { get; set; }
-        public IFormFile? Foto { get; set; } 
-        public string? Password { get; set; }
-    }
-
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateUtente(int id, [FromForm] UserDto updatedUser)
+    public async Task<IActionResult> UpdateUtente(int id, [FromForm] UserDto updatedUser, [FromForm] IFormFile foto)
     {
-        var user = await _context.Staff.FirstOrDefaultAsync(u => u.IdUser == id);
-        if (user == null)
-        {
-            return NotFound();
-        }
-
-        user.Nome = updatedUser.Nome ?? user.Nome;
-        user.Cognome = updatedUser.Cognome ?? user.Cognome;
-        user.Telefono = updatedUser.Telefono ?? user.Telefono;
-        if (updatedUser.FkIdRuolo.HasValue)
-        {
-            user.FkIdRuolo = updatedUser.FkIdRuolo.Value;
-        }
-
-        if (updatedUser.Foto != null)
-        {
-
-            if (!string.IsNullOrEmpty(user.Foto))
-            {
-                var oldFilePath = Path.Combine(_staffImagesPath, user.Foto);
-                if (System.IO.File.Exists(oldFilePath))
-                {
-                    System.IO.File.Delete(oldFilePath);
-                }
-            }
-
-
-            var newFileName = Guid.NewGuid().ToString() + Path.GetExtension(updatedUser.Foto.FileName); 
-            var newFilePath = Path.Combine(_staffImagesPath, newFileName);
-            using (var stream = new FileStream(newFilePath, FileMode.Create))
-            {
-                await updatedUser.Foto.CopyToAsync(stream);
-            }
-            user.Foto = newFileName; 
-        }
-
-        if (!string.IsNullOrEmpty(updatedUser.Password))
-        {
-            user.Password = updatedUser.Password;
-        }
-
         try
         {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!UserExists(id))
+            var result = await _userService.UpdateUserAsync(id, updatedUser, foto, _staffImagesPath);
+            if (result == null)
             {
                 return NotFound();
             }
-            else
-            {
-                throw;
-            }
+
+            return Ok(new { message = "Utente aggiornato con successo" });
         }
-
-        return Ok(new {message = "Utente aggiornato con successo"});
+        catch (Exception ex)
+        {
+            return StatusCode(500, "Errore interno del server: " + ex.Message);
+        }
     }
-
-    private bool UserExists(int id) => _context.Staff.Any(e => e.IdUser == id);
 
 
 
     [HttpGet("Ruoli")]
-    public async Task<ActionResult<IEnumerable<Ruolo>>> GetRuoli()
+    public async Task<ActionResult> GetRuoli()
     {
-        var ruoli = await _context.Ruoli.ToListAsync();
+        var ruoli = await _userService.GetRuoliAsync();
         if (ruoli == null)
         {
             return NotFound();
@@ -168,52 +88,12 @@ public class GestioneUtentiController : ControllerBase
         return Ok(ruoli);
     }
 
-    public class UserCreateDto
-    {
-        public string Nome { get; set; }
-        public string Cognome { get; set; }
-        public string Telefono { get; set; }
-        public int FkIdRuolo { get; set; }
-        public IFormFile Foto { get; set; }
-        public string Password { get; set; }
-    }
-
     [HttpPost]
-    public async Task<IActionResult> CreaUtente([FromForm] UserCreateDto newUser)
+    public async Task<IActionResult> CreaUtente([FromForm] UserDto newUser, [FromForm] IFormFile foto)
     {
         try
         {
-            var user = new User
-            {
-                Nome = newUser.Nome,
-                Cognome = newUser.Cognome,
-                Telefono = newUser.Telefono,
-                FkIdRuolo = newUser.FkIdRuolo,
-                Password = newUser.Password 
-            };
-
-            if (newUser.Foto != null)
-            {
-                var staffImagesPath = _staffImagesPath;
-                var fileName = Path.GetFileNameWithoutExtension(newUser.Foto.FileName);
-                var extension = Path.GetExtension(newUser.Foto.FileName);
-                var fileModel = $"{fileName}_{DateTime.Now:yyyyMMddHHmmss}{extension}";
-                var filePath = Path.Combine(staffImagesPath, fileModel);
-
-                if (!Directory.Exists(staffImagesPath))
-                {
-                    Directory.CreateDirectory(staffImagesPath);
-                }
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await newUser.Foto.CopyToAsync(stream);
-                }
-                user.Foto = Path.Combine(fileModel);
-            }
-
-            _context.Staff.Add(user);
-            await _context.SaveChangesAsync();
+            var user = await _userService.CreateUserAsync(newUser, foto, _staffImagesPath);
             return Ok(user);
         }
         catch (Exception ex)

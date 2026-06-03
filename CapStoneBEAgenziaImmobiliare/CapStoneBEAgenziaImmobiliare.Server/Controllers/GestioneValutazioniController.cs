@@ -28,22 +28,9 @@ public class GestioneValutazioniController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ValutazioneDto>>> GetValutazioni()
+    public async Task<ActionResult> GetValutazioni()
     {
-        var valutazioni = await _context.RichiesteValutazione
-            .Include(r => r.Cliente)
-            .Where(r => !r.Cancellato) 
-            .Select(r => new ValutazioneDto
-            {
-                Id = r.IdValutazione,
-                Nome = r.Cliente.Nome,
-                Cognome = r.Cliente.Cognome,
-                Cellulare = r.Cliente.Telefono,
-                Indirizzo = r.Indirizzo,
-                Attivo = r.Attivo
-            })
-            .ToListAsync();
-
+        var valutazioni = await _valutazioneService.GetAllValutazioniAsync();
         return Ok(valutazioni);
     }
 
@@ -52,15 +39,12 @@ public class GestioneValutazioniController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteValutazione(int id)
     {
-        var valutazione = await _context.RichiesteValutazione.FindAsync(id);
+        var result = await _valutazioneService.DeleteValutazioneAsync(id);
 
-        if (valutazione == null)
+        if (!result)
         {
             return NotFound();
         }
-
-        valutazione.Cancellato = true; 
-        await _context.SaveChangesAsync();
 
         return Ok("Valutazione cancellata con successo.");
     }
@@ -68,53 +52,26 @@ public class GestioneValutazioniController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<dynamic>> GetValutazioneDettagli(int id)
     {
-        var valutazione = await _context.RichiesteValutazione
-            .Include(r => r.Cliente)
-            .Where(r => r.IdValutazione == id && !r.Cancellato)
-            .Select(r => new
-            {
-
-                Id = r.IdValutazione,
-                Nome = r.Cliente.Nome,
-                Cognome = r.Cliente.Cognome,
-                Cellulare = r.Cliente.Telefono,
-                Email = r.Cliente.Email,
-                Metratura = r.Metratura,
-                Indirizzo = r.Indirizzo,
-                CamereDaLetto = r.CamereDaLetto,
-                Bagni = r.Bagni,
-                Cucina = r.Cucina,
-                Sala = r.Sala,
-                AltriVani = r.AltriVani,
-                Box = r.Box,
-                PostiAuto = r.PostiAuto,
-                CaratteristicheSpeciali = r.CaratteristicheSpeciali,
-                Attivo = r.Attivo,
-
-            })
-            .FirstOrDefaultAsync();
+        var valutazione = await _valutazioneService.GetValutazioneByIdAsync(id);
 
         if (valutazione == null)
         {
             return NotFound();
         }
 
-        return valutazione; 
+        return valutazione;
     }
 
     [HttpPut("{id}/attivo")]
     public async Task<IActionResult> ToggleActive(int id)
     {
-        var valutazione = await _context.RichiesteValutazione.FindAsync(id);
-        if (valutazione == null)
+        var result = await _valutazioneService.ToggleActiveAsync(id);
+        if (!result)
         {
             return NotFound();
         }
 
-        valutazione.Attivo = !valutazione.Attivo; 
-        await _context.SaveChangesAsync();
-
-        return NoContent(); 
+        return NoContent();
     }
 
 }

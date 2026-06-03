@@ -2,7 +2,7 @@ import {
   FETCH_RICERCA_IMMOBILI_BEGIN,
   FETCH_RICERCA_IMMOBILI_SUCCESS,
   FETCH_RICERCA_IMMOBILI_FAILURE,
-} from "../actions/CercaCasaAction";
+} from "../constants/actionTypes";
 
 const initialSearchResultsState = {
   risultatiRicerca: [],

@@ -11,7 +11,7 @@ import {
   TOGGLE_ATTIVO_REQUEST,
   TOGGLE_ATTIVO_SUCCESS,
   TOGGLE_ATTIVO_FAILURE,
-} from "../actions/gestioneValutazione";
+} from "../constants/actionTypes";
 
 const initialState = {
   loading: false,

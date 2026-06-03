@@ -17,7 +17,7 @@ import {
   CREA_UTENTE_REQUEST,
   CREA_UTENTE_SUCCESS,
   CREA_UTENTE_FAILURE,
-} from "../actions/gestioneUtentiAction";
+} from "../constants/actionTypes";
 
 const initialState = {
   users: [],

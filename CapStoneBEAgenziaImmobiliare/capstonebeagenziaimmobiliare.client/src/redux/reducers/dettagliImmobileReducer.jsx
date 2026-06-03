@@ -2,7 +2,7 @@ import {
   GET_IMMOBILE_DETAILS_FAIL,
   GET_IMMOBILE_DETAILS_REQUEST,
   GET_IMMOBILE_DETAILS_SUCCESS,
-} from "../actions/dettagliImmobileAction";
+} from "../constants/actionTypes";
 
 const initialState = {
   immobile: null,

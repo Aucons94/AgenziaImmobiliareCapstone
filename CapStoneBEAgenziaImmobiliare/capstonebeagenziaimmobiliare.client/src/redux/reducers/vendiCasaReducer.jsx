@@ -2,7 +2,7 @@ import {
   CREATE_VALUTAZIONE_REQUEST,
   CREATE_VALUTAZIONE_SUCCESS,
   CREATE_VALUTAZIONE_FAILURE,
-} from "../actions/VendiCasaAction";
+} from "../constants/actionTypes";
 
 const initialState = {
   loading: false,

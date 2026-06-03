@@ -1,4 +1,4 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, SET_LOGGED_PROFILE, LOGOUT } from "../actions/loginAction";
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, SET_LOGGED_PROFILE, LOGOUT } from "../constants/actionTypes";
 
 const initialState = {
   isLoading: false,

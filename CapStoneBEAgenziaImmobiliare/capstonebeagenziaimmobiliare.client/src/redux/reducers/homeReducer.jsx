@@ -6,7 +6,7 @@ import {
   FETCH_IMMOBILI_SUCCESS,
   FETCH_IMMOBILI_FAILURE,
   SET_TERMINI_DI_RICERCA,
-} from "../actions/homeAction";
+} from "../constants/actionTypes";
 
 const initialStaffState = {
   items: [],

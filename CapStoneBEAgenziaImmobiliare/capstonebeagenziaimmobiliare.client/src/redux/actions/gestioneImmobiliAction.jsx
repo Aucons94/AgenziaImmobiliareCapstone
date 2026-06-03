@@ -1,40 +1,33 @@
-import { fetchWithAuth } from "../utils/authToken";
-
-export const GET_IMMOBILI_REQUEST = "GET_IMMOBILI_REQUEST";
-export const GET_IMMOBILI_SUCCESS = "GET_IMMOBILI_SUCCESS";
-export const GET_IMMOBILI_FAILURE = "GET_IMMOBILI_FAILURE";
-
-export const DELETE_IMMOBILE_REQUEST = "DELETE_IMMOBILE_REQUEST";
-export const DELETE_IMMOBILE_SUCCESS = "DELETE_IMMOBILE_SUCCESS";
-export const DELETE_IMMOBILE_FAILURE = "DELETE_IMMOBILE_FAILURE";
+import {
+  GET_IMMOBILI_REQUEST,
+  GET_IMMOBILI_SUCCESS,
+  GET_IMMOBILI_FAILURE,
+  DELETE_IMMOBILE_REQUEST,
+  DELETE_IMMOBILE_SUCCESS,
+  DELETE_IMMOBILE_FAILURE,
+} from "../constants/actionTypes";
+import apiClient from "../../services/apiClient";
+import { API_ENDPOINTS } from "../../config/apiConfig";
 
 export const getImmobili = () => async (dispatch) => {
   dispatch({ type: GET_IMMOBILI_REQUEST });
-  const url = "https://localhost:7124/GestioneImmobili";
 
   try {
-    const response = await fetchWithAuth(url);
-    if (!response.ok) {
-      throw new Error("Non autorizzato o errore di rete");
-    }
+    const response = await apiClient.get(API_ENDPOINTS.GESTIONE_IMMOBILI);
     const data = await response.json();
     dispatch({ type: GET_IMMOBILI_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({ type: GET_IMMOBILI_FAILURE, payload: error.toString() });
+    dispatch({ type: GET_IMMOBILI_FAILURE, payload: error.message });
   }
 };
 
 export const deleteImmobile = (idImmobile) => async (dispatch) => {
   dispatch({ type: DELETE_IMMOBILE_REQUEST });
-  const url = `https://localhost:7124/GestioneImmobili/${idImmobile}`;
 
   try {
-    const response = await fetchWithAuth(url, { method: "DELETE" });
-    if (!response.ok) {
-      throw new Error("Errore nella richiesta di eliminazione");
-    }
+    await apiClient.delete(API_ENDPOINTS.GESTIONE_IMMOBILI_BY_ID(idImmobile));
     dispatch({ type: DELETE_IMMOBILE_SUCCESS, payload: idImmobile });
   } catch (error) {
-    dispatch({ type: DELETE_IMMOBILE_FAILURE, payload: error.toString() });
+    dispatch({ type: DELETE_IMMOBILE_FAILURE, payload: error.message });
   }
 };

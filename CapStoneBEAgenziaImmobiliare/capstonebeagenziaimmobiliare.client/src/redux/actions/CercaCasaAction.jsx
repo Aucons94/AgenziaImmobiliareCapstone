@@ -1,6 +1,10 @@
-export const FETCH_RICERCA_IMMOBILI_BEGIN = "FETCH_RICERCA_IMMOBILI_BEGIN";
-export const FETCH_RICERCA_IMMOBILI_SUCCESS = "FETCH_RICERCA_IMMOBILI_SUCCESS";
-export const FETCH_RICERCA_IMMOBILI_FAILURE = "FETCH_RICERCA_IMMOBILI_FAILURE";
+import {
+  FETCH_RICERCA_IMMOBILI_BEGIN,
+  FETCH_RICERCA_IMMOBILI_SUCCESS,
+  FETCH_RICERCA_IMMOBILI_FAILURE,
+} from "../constants/actionTypes";
+import apiClient from "../../services/apiClient";
+import { API_ENDPOINTS } from "../../config/apiConfig";
 
 export const fetchRicercaImmobiliBegin = () => ({
   type: FETCH_RICERCA_IMMOBILI_BEGIN,
@@ -17,8 +21,9 @@ export const fetchRicercaImmobiliFailure = (error) => ({
 });
 
 export function fetchRicercaImmobili(tipoProprieta, ricerca, affitto = false) {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(fetchRicercaImmobiliBegin());
+    
     const queryParams = new URLSearchParams({
       tipoProprieta: tipoProprieta,
       locazione: affitto,
@@ -28,20 +33,14 @@ export function fetchRicercaImmobili(tipoProprieta, ricerca, affitto = false) {
       queryParams.append("ricerca", ricerca);
     }
 
-    return fetch(`https://localhost:7124/CercaCasa/cercaImmobili?${queryParams}`)
-      .then(handleErrors)
-      .then((res) => res.json())
-      .then((json) => {
-        dispatch(fetchRicercaImmobiliSuccess(json));
-        return json;
-      })
-      .catch((error) => dispatch(fetchRicercaImmobiliFailure(error)));
+    try {
+      const response = await apiClient.get(`${API_ENDPOINTS.CERCA_CASA}/cercaImmobili?${queryParams}`);
+      const json = await response.json();
+      dispatch(fetchRicercaImmobiliSuccess(json));
+      return json;
+    } catch (error) {
+      dispatch(fetchRicercaImmobiliFailure(error.message));
+      throw error;
+    }
   };
-}
-
-function handleErrors(response) {
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
-  return response;
 }

@@ -1,32 +1,31 @@
-import { fetchWithAuth } from "../utils/authToken";
-
-export const FETCH_UTENTI_REQUEST = "FETCH_UTENTI_REQUEST";
-export const FETCH_UTENTI_SUCCESS = "FETCH_UTENTI_SUCCESS";
-export const FETCH_UTENTI_FAILURE = "FETCH_UTENTI_FAILURE";
-export const DELETE_UTENTE_REQUEST = "DELETE_UTENTE_REQUEST";
-export const DELETE_UTENTE_SUCCESS = "DELETE_UTENTE_SUCCESS";
-export const DELETE_UTENTE_FAILURE = "DELETE_UTENTE_FAILURE";
-export const FETCH_DETTAGLI_UTENTE_REQUEST = "FETCH_DETTAGLI_UTENTE_REQUEST";
-export const FETCH_DETTAGLI_UTENTE_SUCCESS = "FETCH_DETTAGLI_UTENTE_SUCCESS";
-export const FETCH_DETTAGLI_UTENTE_FAILURE = "FETCH_DETTAGLI_UTENTE_FAILURE";
-export const MODIFICA_UTENTE_REQUEST = "MODIFICA_UTENTE_REQUEST";
-export const MODIFICA_UTENTE_SUCCESS = "MODIFICA_UTENTE_SUCCESS";
-export const MODIFICA_UTENTE_FAILURE = "MODIFICA_UTENTE_FAILURE";
-export const CARICA_RUOLI_REQUEST = "CARICA_RUOLI_REQUEST";
-export const CARICA_RUOLI_SUCCESS = "CARICA_RUOLI_SUCCESS";
-export const CARICA_RUOLI_FAILURE = "CARICA_RUOLI_FAILURE";
-export const CREA_UTENTE_REQUEST = "CREA_UTENTE_REQUEST";
-export const CREA_UTENTE_SUCCESS = "CREA_UTENTE_SUCCESS";
-export const CREA_UTENTE_FAILURE = "CREA_UTENTE_FAILURE";
+import {
+  FETCH_UTENTI_REQUEST,
+  FETCH_UTENTI_SUCCESS,
+  FETCH_UTENTI_FAILURE,
+  DELETE_UTENTE_REQUEST,
+  DELETE_UTENTE_SUCCESS,
+  DELETE_UTENTE_FAILURE,
+  FETCH_DETTAGLI_UTENTE_REQUEST,
+  FETCH_DETTAGLI_UTENTE_SUCCESS,
+  FETCH_DETTAGLI_UTENTE_FAILURE,
+  MODIFICA_UTENTE_REQUEST,
+  MODIFICA_UTENTE_SUCCESS,
+  MODIFICA_UTENTE_FAILURE,
+  CARICA_RUOLI_REQUEST,
+  CARICA_RUOLI_SUCCESS,
+  CARICA_RUOLI_FAILURE,
+  CREA_UTENTE_REQUEST,
+  CREA_UTENTE_SUCCESS,
+  CREA_UTENTE_FAILURE,
+} from "../constants/actionTypes";
+import apiClient from "../../services/apiClient";
+import { API_ENDPOINTS } from "../../config/apiConfig";
 
 export function fetchGestioneUtenti() {
   return async (dispatch) => {
     dispatch({ type: FETCH_UTENTI_REQUEST });
     try {
-      const response = await fetchWithAuth("https://localhost:7124/GestioneUtenti");
-      if (!response.ok) {
-        throw new Error("Failed to fetch");
-      }
+      const response = await apiClient.get(API_ENDPOINTS.GESTIONE_UTENTI);
       const data = await response.json();
       dispatch({ type: FETCH_UTENTI_SUCCESS, payload: data });
     } catch (error) {
@@ -39,12 +38,7 @@ export function deleteUtente(id) {
   return async (dispatch) => {
     dispatch({ type: DELETE_UTENTE_REQUEST });
     try {
-      const response = await fetchWithAuth(`https://localhost:7124/GestioneUtenti/${id}/delete`, {
-        method: "PUT",
-      });
-      if (!response.ok) {
-        throw new Error("Failed to delete user");
-      }
+      await apiClient.put(API_ENDPOINTS.GESTIONE_UTENTI_DELETE(id), {});
       dispatch({ type: DELETE_UTENTE_SUCCESS, payload: id });
     } catch (error) {
       dispatch({ type: DELETE_UTENTE_FAILURE, payload: error.message });
@@ -55,10 +49,7 @@ export function deleteUtente(id) {
 export const fetchDettagliUtente = (id) => async (dispatch) => {
   dispatch({ type: FETCH_DETTAGLI_UTENTE_REQUEST });
   try {
-    const response = await fetchWithAuth(`https://localhost:7124/GestioneUtenti/${id}`);
-    if (!response.ok) {
-      throw new Error("Dettagli utente non trovati");
-    }
+    const response = await apiClient.get(API_ENDPOINTS.GESTIONE_UTENTI_BY_ID(id));
     const data = await response.json();
     dispatch({ type: FETCH_DETTAGLI_UTENTE_SUCCESS, payload: data });
   } catch (error) {
@@ -69,18 +60,10 @@ export const fetchDettagliUtente = (id) => async (dispatch) => {
 export const fetchModificaUtente = (id, formData) => async (dispatch) => {
   dispatch({ type: MODIFICA_UTENTE_REQUEST });
   try {
-    const response = await fetchWithAuth(`https://localhost:7124/GestioneUtenti/${id}`, {
-      method: "PUT",
-      body: formData,
-    });
-
-    if (response.ok) {
-      const message = await response.json();
-      dispatch({ type: MODIFICA_UTENTE_SUCCESS, payload: message });
-      return message;
-    } else {
-      throw new Error("Errore nella modifica dell'utente");
-    }
+    const response = await apiClient.put(API_ENDPOINTS.GESTIONE_UTENTI_BY_ID(id), formData);
+    const message = await response.json();
+    dispatch({ type: MODIFICA_UTENTE_SUCCESS, payload: message });
+    return message;
   } catch (error) {
     dispatch({ type: MODIFICA_UTENTE_FAILURE, payload: error.message });
     throw error;
@@ -90,10 +73,7 @@ export const fetchModificaUtente = (id, formData) => async (dispatch) => {
 export const fetchRuoli = () => async (dispatch) => {
   dispatch({ type: CARICA_RUOLI_REQUEST });
   try {
-    const response = await fetchWithAuth("https://localhost:7124/GestioneUtenti/ruoli");
-    if (!response.ok) {
-      throw new Error("Errore nel caricamento dei ruoli");
-    }
+    const response = await apiClient.get(API_ENDPOINTS.GESTIONE_UTENTI_RUOLI);
     const ruoli = await response.json();
     dispatch({ type: CARICA_RUOLI_SUCCESS, payload: ruoli });
   } catch (error) {
@@ -102,18 +82,13 @@ export const fetchRuoli = () => async (dispatch) => {
 };
 
 export const creaUtente = (userData, setError) => async (dispatch) => {
+  dispatch({ type: CREA_UTENTE_REQUEST });
   try {
-    const response = await fetchWithAuth("https://localhost:7124/GestioneUtenti", {
-      method: "POST",
-      body: userData,
-    });
+    const response = await apiClient.post(API_ENDPOINTS.GESTIONE_UTENTI, userData);
     const data = await response.json();
-    if (response.ok) {
-      dispatch({ type: "CREA_UTENTE_SUCCESS", payload: data });
-    } else {
-      throw new Error(data.message || "Errore durante la creazione dell'utente");
-    }
+    dispatch({ type: CREA_UTENTE_SUCCESS, payload: data });
   } catch (error) {
+    dispatch({ type: CREA_UTENTE_FAILURE, payload: error.message });
     setError(error.message);
   }
 };

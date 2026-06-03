@@ -1,7 +1,6 @@
-﻿using CapStoneBEAgenziaImmobiliare.Server.Models;
+using CapStoneBEAgenziaImmobiliare.Server.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 
 
@@ -10,21 +9,11 @@ using Microsoft.EntityFrameworkCore;
 [ApiController]
 public class GestioneValutazioniController : ControllerBase
 {
-    private readonly AgenziaImmobiliareContext _context;
+    private readonly IValutazioneService _valutazioneService;
 
-    public GestioneValutazioniController(AgenziaImmobiliareContext context)
+    public GestioneValutazioniController(IValutazioneService valutazioneService)
     {
-        _context = context;
-    }
-
-    public class ValutazioneDto
-    {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public string Cognome { get; set; }
-        public string Cellulare { get; set; }
-        public string Indirizzo { get; set; }
-        public bool Attivo { get; set; }
+        _valutazioneService = valutazioneService;
     }
 
     [HttpGet]

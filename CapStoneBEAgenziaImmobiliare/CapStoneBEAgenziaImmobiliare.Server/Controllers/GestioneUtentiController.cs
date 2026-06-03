@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using CapStoneBEAgenziaImmobiliare.Server.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Humanizer.Localisation;
-using Microsoft.Extensions.Hosting.Internal;
+using CapStoneBEAgenziaImmobiliare.Server.Interfaces;
+using CapStoneBEAgenziaImmobiliare.Server.DTOs.User;
 
 
 [Authorize(Roles = "Master Broker")]
@@ -13,12 +9,12 @@ using Microsoft.Extensions.Hosting.Internal;
 [ApiController]
 public class GestioneUtentiController : ControllerBase
 {
-    private readonly AgenziaImmobiliareContext _context;
+    private readonly IUserService _userService;
     private readonly string _staffImagesPath;
 
-    public GestioneUtentiController(AgenziaImmobiliareContext context, IWebHostEnvironment env)
+    public GestioneUtentiController(IUserService userService, IWebHostEnvironment env)
     {
-        _context = context;
+        _userService = userService;
         _staffImagesPath = Path.Combine(env.ContentRootPath, "images", "staff");
     }
 

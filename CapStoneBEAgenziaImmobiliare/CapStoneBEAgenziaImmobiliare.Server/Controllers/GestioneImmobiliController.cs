@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using CapStoneBEAgenziaImmobiliare.Server.Models;
+using CapStoneBEAgenziaImmobiliare.Server.Interfaces;
+using CapStoneBEAgenziaImmobiliare.Server.DTOs.Immobile;
 using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 

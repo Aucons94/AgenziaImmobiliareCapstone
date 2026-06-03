@@ -3,6 +3,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchDettagliUtente, fetchModificaUtente, fetchRuoli } from "../../redux/actions/gestioneUtentiAction";
 import { Container, Form, Button, Spinner, Alert, Card, Image, FormControl, Modal, Row, Col } from "react-bootstrap";
+import { useForm } from "../../hooks/useForm";
+import { useFileUpload } from "../../hooks/useFileUpload";
+import { useModal } from "../../hooks/useModal";
 
 function ModificaUtente() {
   const { id } = useParams();
@@ -10,19 +13,31 @@ function ModificaUtente() {
   const dispatch = useDispatch();
   const { userDetail, loading, error, ruoli } = useSelector((state) => state.gestioneUtenti);
 
-  const [userForm, setUserForm] = useState({
+  const { values: userForm, handleChange, setValues } = useForm({
     nome: "",
     cognome: "",
     telefono: "",
-    password: "",
-    foto: "",
     fkIdRuolo: "",
   });
+
+  const {
+    file: newFoto,
+    preview: newFotoPreview,
+    error: fileError,
+    handleFileChange,
+    clearFile,
+  } = useFileUpload({
+    maxSize: 5 * 1024 * 1024,
+    allowedTypes: ["image/jpeg", "image/png", "image/jpg"],
+  });
+
+  const { isOpen: showConfirmationModal, open: openConfirmationModal, close: closeConfirmationModal } = useModal(false);
+
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [currentFoto, setCurrentFoto] = useState("");
   const fileInputRef = useRef(null);
 
   useEffect(() => {
@@ -34,21 +49,15 @@ function ModificaUtente() {
 
   useEffect(() => {
     if (userDetail) {
-      setUserForm({
+      setValues({
         nome: userDetail.nome || "",
         cognome: userDetail.cognome || "",
         telefono: userDetail.telefono || "",
-        password: "",
-        foto: userDetail.foto || "",
         fkIdRuolo: userDetail.fkIdRuolo ? userDetail.fkIdRuolo.toString() : "",
       });
+      setCurrentFoto(userDetail.foto || "");
     }
-  }, [userDetail]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUserForm((prev) => ({ ...prev, [name]: value }));
-  };
+  }, [userDetail, setValues]);
 
   const handlePasswordChange = (e) => {
     if (e.target.name === "newPassword") {
@@ -56,15 +65,6 @@ function ModificaUtente() {
     } else {
       setConfirmPassword(e.target.value);
     }
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setUserForm((prev) => ({
-      ...prev,
-      fotoFile: file,
-      foto: URL.createObjectURL(file),
-    }));
   };
 
   const handleFileClick = () => {
@@ -77,7 +77,7 @@ function ModificaUtente() {
       alert("Le password non corrispondono.");
       return;
     }
-    setShowConfirmationModal(true);
+    openConfirmationModal();
   };
 
   const handleUpdateConfirmation = () => {
@@ -87,11 +87,11 @@ function ModificaUtente() {
     formData.append("telefono", userForm.telefono);
     formData.append("password", newPassword || "");
     formData.append("fkIdRuolo", userForm.fkIdRuolo);
-    if (userForm.fotoFile) {
-      formData.append("foto", userForm.fotoFile);
+    if (newFoto) {
+      formData.append("foto", newFoto);
     }
     dispatch(fetchModificaUtente(id, formData));
-    setShowConfirmationModal(false);
+    closeConfirmationModal();
     setSuccess(true);
     navigate("/GestioneUtenti");
   };
@@ -107,15 +107,22 @@ function ModificaUtente() {
           <Form onSubmit={handleSubmit} className="formModificaUtente">
             <Row>
               <Col md={12} lg={8} xl={6} className="text-center">
-                {userForm.foto && (
+                {(newFotoPreview || currentFoto) && (
                   <>
-                    <Image src={userForm.foto} rounded className="w-100" />
+                    <Image src={newFotoPreview || currentFoto} rounded className="w-100" />
                     <div className="mt-3 text-center">
                       <Button onClick={handleFileClick} className="customFileModificaUtente">
                         Carica Nuova Immagine
                       </Button>
                     </div>
-                    <input type="file" ref={fileInputRef} onChange={handleFileChange} style={{ display: "none" }} />
+                    <input 
+                      type="file" 
+                      ref={fileInputRef} 
+                      onChange={handleFileChange}
+                      accept="image/jpeg,image/png,image/jpg"
+                      style={{ display: "none" }} 
+                    />
+                    {fileError && <Alert variant="danger" className="mt-2">{fileError}</Alert>}
                   </>
                 )}
               </Col>
@@ -189,13 +196,13 @@ function ModificaUtente() {
           </Form>
         </Card.Body>
       </Card>
-      <Modal show={showConfirmationModal} onHide={() => setShowConfirmationModal(false)}>
+      <Modal show={showConfirmationModal} onHide={closeConfirmationModal}>
         <Modal.Header closeButton>
           <Modal.Title>Conferma Modifica</Modal.Title>
         </Modal.Header>
         <Modal.Body>Sei sicuro di voler aggiornare questo utente?</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowConfirmationModal(false)}>
+          <Button variant="secondary" onClick={closeConfirmationModal}>
             Annulla
           </Button>
           <Button variant="primary" onClick={handleUpdateConfirmation}>

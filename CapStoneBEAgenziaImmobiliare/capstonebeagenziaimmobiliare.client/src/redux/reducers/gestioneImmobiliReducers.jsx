@@ -5,7 +5,7 @@ import {
   DELETE_IMMOBILE_REQUEST,
   DELETE_IMMOBILE_SUCCESS,
   DELETE_IMMOBILE_FAILURE,
-} from "../actions/gestioneImmobiliAction";
+} from "../constants/actionTypes";
 
 const initialState = {
   loading: false,
